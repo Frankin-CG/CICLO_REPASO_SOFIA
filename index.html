@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Educación Cívica - Academia_Sofía</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff4757 0%, #ff6348 50%, #ffa502 100%);
+            min-height: 100vh; padding: 20px;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .container {
+            background: white; border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 850px; width: 100%; padding: 40px;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        .academy-header {
+            background: linear-gradient(135deg, #ff4757, #ff6348, #ffa502);
+            padding: 25px; border-radius: 15px; margin-bottom: 30px;
+            text-align: center; box-shadow: 0 4px 15px rgba(255,71,87,0.3);
+        }
+        .logo-container { width:100%; max-width:500px; height:auto; margin:0 auto 15px; display:flex; align-items:center; justify-content:center; }
+        .logo-container img { width:100%; height:auto; max-height:200px; object-fit:contain; display:block; }
+        .header { text-align:center; margin-bottom:30px; }
+        .header p { color:#666; font-size:1.1em; }
+        .progress-bar { width:100%; height:12px; background:#e0e0e0; border-radius:10px; margin-bottom:30px; overflow:hidden; }
+        .progress-fill { height:100%; background:linear-gradient(90deg,#ff4757,#ff6348,#ffa502); width:0%; transition:width 0.3s ease; }
+        .question-card { display:none; animation:slideIn 0.4s ease; }
+        .question-card.active { display:block; }
+        @keyframes slideIn { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
+        .question-number { color:#ff4757; font-weight:bold; font-size:1.1em; margin-bottom:15px; }
+        .question-text { font-size:1.3em; color:#333; margin-bottom:25px; line-height:1.6; }
+        .options { display:flex; flex-direction:column; gap:15px; }
+        .option { padding:18px 25px; border:2px solid #e0e0e0; border-radius:12px; cursor:pointer; transition:all 0.3s ease; font-size:1.1em; background:white; }
+        .option:hover { border-color:#ff6348; background:linear-gradient(to right,#fff5f5,#fffaf0); transform:translateX(5px); }
+        .option.selected { border-color:#ff6348; background:linear-gradient(to right,#ffe5e5,#fff5e5); }
+        .option.correct { border-color:#4caf50; background:#e8f5e9; }
+        .option.incorrect { border-color:#f44336; background:#ffebee; }
+        .option.disabled { cursor:not-allowed; opacity:0.7; }
+        .justification { display:none; margin-top:20px; padding:20px; background:linear-gradient(to right,#fff5f5,#fffaf0); border-left:4px solid #ff6348; border-radius:8px; animation:fadeIn 0.4s ease; }
+        .justification.show { display:block; }
+        .justification strong { color:#ff4757; }
+        .nav-buttons { display:flex; justify-content:space-between; margin-top:30px; gap:15px; }
+        .btn { padding:15px 35px; border:none; border-radius:10px; font-size:1.1em; cursor:pointer; transition:all 0.3s ease; font-weight:600; }
+        .btn-primary { background:linear-gradient(135deg,#ff4757,#ffa502); color:white; }
+        .btn-primary:hover { transform:translateY(-2px); box-shadow:0 5px 15px rgba(255,71,87,0.4); }
+        .btn-secondary { background:#e0e0e0; color:#666; }
+        .btn-secondary:hover { background:#d0d0d0; }
+        .btn:disabled { opacity:0.5; cursor:not-allowed; }
+        .results { display:none; text-align:center; }
+        .results.show { display:block; }
+        .results h2 { font-size:1.8em; color:#333; margin-bottom:10px; }
+        .score-circle { width:220px; height:220px; border-radius:50%; background:linear-gradient(135deg,#ff4757,#ff6348,#ffa502); color:white; display:flex; flex-direction:column; justify-content:center; align-items:center; margin:25px auto 15px; box-shadow:0 10px 30px rgba(255,71,87,0.4); }
+        .score-circle .nota-label { font-size:0.95em; opacity:0.85; letter-spacing:1px; text-transform:uppercase; margin-bottom:2px; }
+        .score-circle .nota-valor { font-size:4em; font-weight:bold; line-height:1; }
+        .score-circle .nota-total { font-size:1.1em; opacity:0.85; }
+        .score-detail { display:inline-block; background:#f8f8f8; border:2px solid #eee; border-radius:12px; padding:10px 28px; margin-bottom:20px; font-size:1em; color:#555; }
+        .score-detail span { font-weight:bold; color:#ff4757; }
+        .grade-bar-container { width:100%; max-width:480px; margin:0 auto 20px; }
+        .grade-bar-bg { width:100%; height:18px; background:#e0e0e0; border-radius:10px; overflow:hidden; margin-bottom:6px; }
+        .grade-bar-fill { height:100%; border-radius:10px; transition:width 1s ease; background:linear-gradient(90deg,#ff4757,#ff6348,#ffa502); }
+        .grade-bar-labels { display:flex; justify-content:space-between; font-size:0.8em; color:#aaa; padding:0 2px; }
+        .grade-badge { display:inline-block; padding:8px 22px; border-radius:50px; font-weight:bold; font-size:1em; margin-bottom:15px; letter-spacing:0.5px; }
+        .badge-excelente   { background:#e8f5e9; color:#2e7d32; border:2px solid #4caf50; }
+        .badge-bueno       { background:#e3f2fd; color:#1565c0; border:2px solid #42a5f5; }
+        .badge-regular     { background:#fff8e1; color:#f57f17; border:2px solid #ffca28; }
+        .badge-desaprobado { background:#ffebee; color:#c62828; border:2px solid #ef5350; }
+        .results p.result-msg { font-size:1.15em; color:#555; margin-bottom:25px; line-height:1.6; }
+        .results-motto { background:linear-gradient(135deg,#ff4757,#ffa502); color:white; padding:15px 30px; border-radius:50px; font-weight:bold; font-size:1.1em; display:inline-block; margin-top:10px; text-transform:uppercase; letter-spacing:1px; }
+        @media (max-width:600px) {
+            .container { padding:25px; } .logo-container { max-width:200px; } .logo-container img { max-height:100px; }
+            .header h1 { font-size:1.8em; } .question-text { font-size:1.1em; } .nav-buttons { flex-direction:column; }
+            .score-circle { width:180px; height:180px; } .score-circle .nota-valor { font-size:3.2em; }
+            .results-motto { font-size:0.9em; padding:12px 20px; }
+        }
+        @media (max-width:400px) {
+            .container { padding:20px; } .logo-container { max-width:150px; } .logo-container img { max-height:80px; }
+            .option { padding:15px 20px; font-size:1em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="academy-header">
+            <div class="logo-container">
+                <img src="logo_SOFIA-Photoroom.png" alt="Logo Academia">
+            </div>
+        </div>
+
+        <div class="header">
+            <h1>⚖️ Examen de Educación Cívica</h1>
+            <p>Ciclo repaso - 23 Preguntas</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div id="quizContainer"></div>
+
+        <div class="results" id="results">
+            <h2>🎉 ¡Examen Completado!</h2>
+            <div class="score-circle">
+                <div class="nota-label">Tu nota</div>
+                <div class="nota-valor" id="finalNota">0</div>
+                <div class="nota-total">/ 20</div>
+            </div>
+            <div class="score-detail">
+                Respuestas correctas: <span id="finalScore">0</span> de <span id="totalQuestions">23</span>
+            </div>
+            <div class="grade-bar-container">
+                <div class="grade-bar-bg">
+                    <div class="grade-bar-fill" id="gradeBarFill" style="width:0%"></div>
+                </div>
+                <div class="grade-bar-labels"><span>0</span><span>5</span><span>10</span><span>15</span><span>20</span></div>
+            </div>
+            <div id="gradeBadge" class="grade-badge"></div>
+            <p class="result-msg" id="resultMessage"></p>
+            <div class="results-motto">--Tutor Franklin--</div>
+            <br><br>
+            <button class="btn btn-primary" onclick="restartQuiz()">🔄 Reintentar Examen</button>
+        </div>
+
+        <div class="nav-buttons" id="navButtons">
+            <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">← Anterior</button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Siguiente →</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Las normas jurídicas tienen fuerza coactiva y coercitiva, monopolizada por:",
+                options: ["El Poder Judicial", "El Presidente de la República", "El pueblo", "El Estado"],
+                correct: 3,
+                justification: "El Estado posee el monopolio legítimo de la fuerza, lo que significa que solo él puede imponer el cumplimiento de las normas jurídicas mediante sanciones o el uso de la fuerza legítima."
+            },
+            {
+                question: "La coerción es la presión o amenaza que obliga a actuar de acuerdo a las normas jurídicas, mientras que la coacción es el…",
+                options: [
+                    "Empleo o uso de la fuerza del Estado para obligar a cumplir las normas jurídicas.",
+                    "Uso de la fuerza de las personas para obligar a cumplir las normas jurídicas.",
+                    "Uso de la fuerza del Poder Judicial para obligar a cumplir las normas jurídicas.",
+                    "Uso de la fuerza de las autoridades para obligar a cumplir las normas jurídicas."
+                ],
+                correct: 0,
+                justification: "La coerción es presión o amenaza; la coacción implica el uso efectivo de la fuerza estatal para hacer cumplir la norma jurídica."
+            },
+            {
+                question: "La vigencia de las normas jurídicas se establece a partir de su:",
+                options: [
+                    "Aprobación por el órgano respectivo.",
+                    "Promulgación por la autoridad respectiva.",
+                    "Publicación oficial en el diario 'Perú 21'.",
+                    "Publicación oficial en el diario 'El Peruano'."
+                ],
+                correct: 3,
+                justification: "En el Perú, las normas entran en vigencia después de su publicación en el diario oficial El Peruano, salvo disposición distinta de la propia ley."
+            },
+            {
+                question: "Respecto a la estructura de la Constitución, son llamados 'los mínimos constitucionales', sin los cuales el Estado no estaría constituido:",
+                options: [
+                    "El preámbulo.",
+                    "La parte dogmática.",
+                    "La parte orgánica.",
+                    "La parte dogmática y la parte orgánica."
+                ],
+                correct: 3,
+                justification: "Toda Constitución requiere al menos dos partes esenciales: la dogmática (derechos fundamentales) y la orgánica (organización del Estado). Ambas son los mínimos constitucionales."
+            },
+            {
+                question: "Es la parte de la Constitución que regula los derechos y deberes fundamentales de la persona, la forma de gobierno y el régimen económico del Estado peruano:",
+                options: [
+                    "El preámbulo.",
+                    "Las Disposiciones Finales y Transitorias.",
+                    "La parte dogmática.",
+                    "La parte orgánica."
+                ],
+                correct: 2,
+                justification: "La parte dogmática establece los derechos fundamentales, deberes y principios constitucionales que rigen la relación entre el Estado y los ciudadanos."
+            },
+            {
+                question: "Es la parte de la Constitución que regula la estructura del Estado (los tres poderes del Estado, los Organismos Constitucionales Autónomos y los Gobiernos Locales y Regionales):",
+                options: [
+                    "El preámbulo.",
+                    "La parte orgánica.",
+                    "La parte dogmática.",
+                    "Las Disposiciones Finales y Transitorias."
+                ],
+                correct: 1,
+                justification: "La parte orgánica organiza el funcionamiento del Estado: poderes públicos, organismos autónomos y niveles de gobierno regional y local."
+            },
+            {
+                question: "Es el poder constituido para elaborar, dar u otorgar una Constitución Política del Estado:",
+                options: [
+                    "El Poder Legislativo.",
+                    "El Poder Ejecutivo.",
+                    "El Poder Judicial.",
+                    "El Poder Constituyente."
+                ],
+                correct: 3,
+                justification: "El poder constituyente es el poder soberano que crea o modifica la Constitución. Es originario porque no deriva de ninguna norma anterior."
+            },
+            {
+                question: "Uno de ellos NO tiene facultad de iniciativa de reforma constitucional:",
+                options: [
+                    "El Presidente de la República con aprobación del Consejo de Ministros.",
+                    "Los congresistas.",
+                    "Los ciudadanos (0.3% de la población electoral).",
+                    "Los Ministros de Estado."
+                ],
+                correct: 3,
+                justification: "Según la Constitución peruana, la iniciativa de reforma corresponde al Presidente con el Consejo de Ministros, a los congresistas y a los ciudadanos (0.3% del padrón). Los ministros por sí solos no pueden presentarla."
+            },
+            {
+                question: "Entre las libertades fundamentales protegidas por la Constitución, aquella que faculta el derecho a la revocación de autoridades corresponde a la libertad:",
+                options: ["Civil.", "Política.", "De expresión.", "Personal."],
+                correct: 1,
+                justification: "La revocatoria de autoridades es un mecanismo de participación política de los ciudadanos, por lo tanto pertenece a la libertad política."
+            },
+            {
+                question: "Juan es detenido arbitrariamente por la Policía, sin orden judicial ni delito flagrante. Juan se vio afectado en su libertad:",
+                options: ["Civil.", "Política.", "De expresión.", "Personal."],
+                correct: 3,
+                justification: "La detención sin orden judicial ni flagrancia vulnera el derecho fundamental a la libertad personal, reconocido en la Constitución Política del Perú."
+            },
+            {
+                question: "Uno de ellos NO corresponde a los derechos políticos:",
+                options: [
+                    "Participar en el referéndum.",
+                    "Iniciativa legislativa.",
+                    "La formación de sindicatos.",
+                    "La revocación de autoridades."
+                ],
+                correct: 2,
+                justification: "Los sindicatos pertenecen a los derechos laborales o sociales, no a los derechos políticos. Los derechos políticos están vinculados a la participación en el gobierno y la vida pública."
+            },
+            {
+                question: "El voto electoral es personal, libre, igual, secreto y obligatorio hasta los ______. Después de esa edad ______.",
+                options: [
+                    "75 años de edad – se extingue la obligación.",
+                    "75 años de edad – es opcional.",
+                    "70 años de edad – se pierde el derecho.",
+                    "70 años de edad – es opcional."
+                ],
+                correct: 3,
+                justification: "En el Perú el voto es obligatorio de 18 a 70 años. A partir de los 70 años se vuelve opcional, pero no se pierde el derecho a votar."
+            },
+            {
+                question: "El Poder Legislativo es:",
+                options: [
+                    "La institución representativa de los congresistas que reside en el Congreso de la República.",
+                    "La institución representativa del pueblo que reside en el Congreso de la República.",
+                    "La institución representativa encargada de ejecutar las leyes.",
+                    "La institución representativa de los congresistas y diputados."
+                ],
+                correct: 1,
+                justification: "Según el artículo 90 de la Constitución Política del Perú, el Poder Legislativo reside en el Congreso de la República, el cual representa al pueblo o nación peruana."
+            },
+            {
+                question: "El Congreso de la República es llamado también:",
+                options: [
+                    "Parlamento Nacional.",
+                    "Asamblea de representantes de la corte general.",
+                    "Asamblea de representantes de los congresistas.",
+                    "Asamblea de senadores y diputados."
+                ],
+                correct: 0,
+                justification: "En la teoría política y en la práctica parlamentaria, el Congreso también es conocido como Parlamento Nacional, ya que cumple la función legislativa del Estado."
+            },
+            {
+                question: "El titular de la potestad legislativa del Estado es:",
+                options: [
+                    "El Poder Judicial.",
+                    "El Congreso de la República.",
+                    "El presidente del Congreso.",
+                    "El Poder Ejecutivo."
+                ],
+                correct: 1,
+                justification: "El Congreso de la República es el órgano encargado de ejercer la potestad legislativa, es decir, crear, modificar o derogar las leyes del Estado."
+            },
+            {
+                question: "El Congreso de la República del Perú está conformado por:",
+                options: [
+                    "120 congresistas elegidos por sufragio popular por un período de 5 años.",
+                    "130 congresistas elegidos por sufragio particular por un período de 5 años.",
+                    "130 congresistas elegidos por los partidos políticos por un período de 5 años.",
+                    "130 congresistas elegidos por sufragio popular por un período de 5 años."
+                ],
+                correct: 3,
+                justification: "El Congreso peruano está integrado por 130 congresistas elegidos por sufragio universal y directo por un periodo de cinco años (periodo 2021–2026)."
+            },
+            {
+                question: "NO es atribución del Congreso de la República del Perú:",
+                options: [
+                    "Dar leyes y resoluciones legislativas.",
+                    "Velar por el respeto de la Constitución y de las leyes.",
+                    "Dar ordenanzas regionales y municipales.",
+                    "Autorizar el ingreso de tropas extranjeras al territorio nacional."
+                ],
+                correct: 2,
+                justification: "Las ordenanzas regionales y municipales son competencias de los gobiernos regionales y municipalidades respectivamente, no del Congreso de la República."
+            },
+            {
+                question: "Los congresistas de la República no pueden ser procesados ni presos sin previa autorización del Congreso o de la Comisión Permanente:",
+                options: [
+                    "Por las opiniones que emiten en el ejercicio de sus funciones.",
+                    "Por las opiniones y votos que emiten en el ejercicio de sus funciones.",
+                    "Excepto por delito no flagrante.",
+                    "Excepto por delito flagrante."
+                ],
+                correct: 3,
+                justification: "Según el artículo 93 de la Constitución, los congresistas no pueden ser detenidos ni procesados sin autorización del Congreso, salvo en caso de delito flagrante."
+            },
+            {
+                question: "Es un mecanismo de fiscalización para los ministros de Estado del Congreso de la República:",
+                options: [
+                    "Pedido de la hoja de vida.",
+                    "Estación de preguntas.",
+                    "Interpelación.",
+                    "Actos de investigación."
+                ],
+                correct: 2,
+                justification: "La interpelación es un mecanismo mediante el cual el Congreso cita obligatoriamente a un ministro para que explique y defienda su gestión o decisiones ante el pleno."
+            },
+            {
+                question: "Hay dos tipos de Legislatura:",
+                options: [
+                    "Bimestral y trimestral.",
+                    "Trimestral y semestral.",
+                    "Ordinarias y extraordinarias.",
+                    "Semestral y ordinaria."
+                ],
+                correct: 2,
+                justification: "Las legislaturas pueden ser ordinarias (periodos regulares de sesiones del Congreso) o extraordinarias (convocadas excepcionalmente por el Presidente o la Comisión Permanente)."
+            },
+            {
+                question: "Es un órgano interno del Congreso:",
+                options: [
+                    "Consejo de ministros.",
+                    "Tribunal Constitucional.",
+                    "Casa del pueblo.",
+                    "Comisiones."
+                ],
+                correct: 3,
+                justification: "Las comisiones parlamentarias son órganos internos del Congreso encargados de analizar proyectos de ley, fiscalizar la gestión pública y emitir dictámenes."
+            },
+            {
+                question: "La Comisión Permanente es:",
+                options: [
+                    "El órgano que reemplaza al Congreso durante todo el periodo legislativo.",
+                    "El órgano del Poder Legislativo que funciona durante el receso del Congreso, cuyos integrantes no exceden el 25% del total de congresistas.",
+                    "El órgano que dirige el Poder Ejecutivo.",
+                    "El órgano que reemplaza al Tribunal Constitucional."
+                ],
+                correct: 1,
+                justification: "La Comisión Permanente funciona durante el receso parlamentario. Sus miembros no pueden exceder el 25% del total de congresistas, según la Constitución."
+            },
+            {
+                question: "La finalidad de las Comisiones de investigación es:",
+                options: [
+                    "Iniciar investigaciones sobre cualquier asunto de interés privado.",
+                    "Iniciar investigaciones sobre cualquier asunto de interés personal.",
+                    "Iniciar investigaciones sobre cualquier asunto de interés público.",
+                    "Iniciar investigaciones sobre cualquier asunto de interés familiar."
+                ],
+                correct: 2,
+                justification: "Las comisiones investigadoras del Congreso se crean para investigar asuntos de interés público, como casos de corrupción, irregularidades en la gestión estatal o violaciones a derechos fundamentales."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+        const userAnswers = [];
+
+        function initQuiz() { renderQuestion(); updateProgress(); updateButtons(); }
+
+        function renderQuestion() {
+            const q = questions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = `
+                <div class="question-card active">
+                    <div class="question-number">Pregunta ${currentQuestion + 1} de ${questions.length}</div>
+                    <div class="question-text">${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((option, index) => `
+                            <div class="option" onclick="selectOption(${index})" data-index="${index}">
+                                <strong>${String.fromCharCode(65 + index)})</strong> ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="justification" id="justification">
+                        <strong>⚖️ Justificación:</strong> ${q.justification}
+                    </div>
+                </div>
+            `;
+            if (userAnswers[currentQuestion] !== undefined) showPreviousAnswer();
+        }
+
+        function selectOption(index) {
+            if (answered) return;
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            options[index].classList.add('selected');
+            answered = true;
+            userAnswers[currentQuestion] = index;
+            const q = questions[currentQuestion];
+            setTimeout(() => {
+                if (index === q.correct) { options[index].classList.add('correct'); score++; }
+                else { options[index].classList.add('incorrect'); options[q.correct].classList.add('correct'); }
+                options.forEach(opt => opt.classList.add('disabled'));
+                document.getElementById('justification').classList.add('show');
+                updateButtons();
+            }, 300);
+        }
+
+        function showPreviousAnswer() {
+            const options = document.querySelectorAll('.option');
+            const userAnswer = userAnswers[currentQuestion];
+            const q = questions[currentQuestion];
+            options[userAnswer].classList.add('selected');
+            if (userAnswer === q.correct) { options[userAnswer].classList.add('correct'); }
+            else { options[userAnswer].classList.add('incorrect'); options[q.correct].classList.add('correct'); }
+            options.forEach(opt => opt.classList.add('disabled'));
+            document.getElementById('justification').classList.add('show');
+            answered = true;
+        }
+
+        function nextQuestion() {
+            if (!answered && userAnswers[currentQuestion] === undefined) { alert('Por favor, selecciona una respuesta antes de continuar.'); return; }
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                answered = userAnswers[currentQuestion] !== undefined;
+                renderQuestion(); updateProgress(); updateButtons();
+                window.scrollTo(0, 0);
+            } else { showResults(); }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                answered = true;
+                renderQuestion(); updateProgress(); updateButtons();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function updateButtons() {
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').textContent = (currentQuestion === questions.length - 1)
+                ? (answered ? 'Ver Resultados 🎯' : 'Finalizar Quiz 🎯')
+                : 'Siguiente →';
+        }
+
+        function updateProgress() {
+            document.getElementById('progressFill').style.width = ((currentQuestion + 1) / questions.length * 100) + '%';
+        }
+
+        function showResults() {
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('navButtons').style.display = 'none';
+            document.getElementById('results').classList.add('show');
+            const total = questions.length;
+            const nota = Math.round((score / total) * 20 * 10) / 10;
+            const notaDisplay = Number.isInteger(nota) ? nota : nota.toFixed(1);
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('totalQuestions').textContent = total;
+            document.getElementById('finalNota').textContent = notaDisplay;
+            setTimeout(() => { document.getElementById('gradeBarFill').style.width = ((nota / 20) * 100) + '%'; }, 200);
+            const badge = document.getElementById('gradeBadge');
+            const msg = document.getElementById('resultMessage');
+            if (nota >= 17) {
+                badge.textContent = '🏆 Sobresaliente'; badge.className = 'grade-badge badge-excelente';
+                msg.textContent = '¡Excelente desempeño! Dominas con solidez los temas de Educación Cívica. ¡Así se llega a la universidad! 🌟';
+            } else if (nota >= 14) {
+                badge.textContent = '👏 Aprobado — Bueno'; badge.className = 'grade-badge badge-bueno';
+                msg.textContent = '¡Muy bien! Tienes buenos conocimientos cívicos. Refuerza los temas donde fallaste y estarás listo para el examen de admisión. 📚';
+            } else if (nota >= 11) {
+                badge.textContent = '📖 Aprobado — Regular'; badge.className = 'grade-badge badge-regular';
+                msg.textContent = 'Vas por buen camino, pero aún hay temas que necesitan más repaso. ¡Tú puedes mejorar, sigue adelante! ✏️';
+            } else {
+                badge.textContent = '💪 Desaprobado — Sigue intentando'; badge.className = 'grade-badge badge-desaprobado';
+                msg.textContent = 'No te rindas. Cada error es una lección. Repasa los temas con calma, vuelve a intentarlo y verás cómo mejoras. ¡Ánimo! 🔥';
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0; score = 0; answered = false; userAnswers.length = 0;
+            document.getElementById('gradeBarFill').style.width = '0%';
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('navButtons').style.display = 'flex';
+            document.getElementById('results').classList.remove('show');
+            initQuiz();
+        }
+
+        initQuiz();
+    </script>
+</body>
+</html>
