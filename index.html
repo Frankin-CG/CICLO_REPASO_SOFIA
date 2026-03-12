@@ -3,102 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test de Educación Cívica - Academia_Sofía</title>
+    <title>Examen de Economía - Academia Sofía</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --fucsia: #DE1470;
+            --fucsia-mid: #f0398a;
+            --fucsia-light: #ff6aaa;
+            --fucsia-pale: #fde8f3;
+            --fucsia-ultra: #fff0f8;
+            --rose: #fce4ef;
+            --warm-white: #ffffff;
+            --warm-gray: #f5f0f3;
+            --text: #3a1a2e;
+            --text-soft: #7a5a6a;
+            --border: #f0d0e0;
+            --correct: #1a7a4a;
+            --correct-bg: #e6f7ee;
+            --incorrect: #c0392b;
+            --incorrect-bg: #fdecea;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff4757 0%, #ff6348 50%, #ffa502 100%);
-            min-height: 100vh; padding: 20px;
-            display: flex; justify-content: center; align-items: center;
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #fce4ef 0%, #fdf0f8 40%, #fce8f4 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
         .container {
-            background: white; border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 850px; width: 100%; padding: 40px;
-            animation: fadeIn 0.5s ease;
+            background: var(--warm-white);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(222,20,112,0.15), 0 0 0 1px rgba(222,20,112,0.12);
+            max-width: 860px;
+            width: 100%;
+            overflow: hidden;
+            animation: fadeUp 0.6s ease;
         }
-        @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HEADER */
         .academy-header {
-            background: linear-gradient(135deg, #ff4757, #ff6348, #ffa502);
-            padding: 25px; border-radius: 15px; margin-bottom: 30px;
-            text-align: center; box-shadow: 0 4px 15px rgba(255,71,87,0.3);
+            background: linear-gradient(135deg, var(--fucsia) 0%, var(--fucsia-mid) 60%, #f06292 100%);
+            padding: 32px 40px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .logo-container { width:100%; max-width:500px; height:auto; margin:0 auto 15px; display:flex; align-items:center; justify-content:center; }
-        .logo-container img { width:100%; height:auto; max-height:200px; object-fit:contain; display:block; }
-        .header { text-align:center; margin-bottom:30px; }
-        .header p { color:#666; font-size:1.1em; }
-        .progress-bar { width:100%; height:12px; background:#e0e0e0; border-radius:10px; margin-bottom:30px; overflow:hidden; }
-        .progress-fill { height:100%; background:linear-gradient(90deg,#ff4757,#ff6348,#ffa502); width:0%; transition:width 0.3s ease; }
-        .question-card { display:none; animation:slideIn 0.4s ease; }
-        .question-card.active { display:block; }
-        @keyframes slideIn { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
-        .question-number { color:#ff4757; font-weight:bold; font-size:1.1em; margin-bottom:15px; }
-        .question-text { font-size:1.3em; color:#333; margin-bottom:25px; line-height:1.6; }
-        .options { display:flex; flex-direction:column; gap:15px; }
-        .option { padding:18px 25px; border:2px solid #e0e0e0; border-radius:12px; cursor:pointer; transition:all 0.3s ease; font-size:1.1em; background:white; }
-        .option:hover { border-color:#ff6348; background:linear-gradient(to right,#fff5f5,#fffaf0); transform:translateX(5px); }
-        .option.selected { border-color:#ff6348; background:linear-gradient(to right,#ffe5e5,#fff5e5); }
-        .option.correct { border-color:#4caf50; background:#e8f5e9; }
-        .option.incorrect { border-color:#f44336; background:#ffebee; }
-        .option.disabled { cursor:not-allowed; opacity:0.7; }
-        .justification { display:none; margin-top:20px; padding:20px; background:linear-gradient(to right,#fff5f5,#fffaf0); border-left:4px solid #ff6348; border-radius:8px; animation:fadeIn 0.4s ease; }
-        .justification.show { display:block; }
-        .justification strong { color:#ff4757; }
-        .nav-buttons { display:flex; justify-content:space-between; margin-top:30px; gap:15px; }
-        .btn { padding:15px 35px; border:none; border-radius:10px; font-size:1.1em; cursor:pointer; transition:all 0.3s ease; font-weight:600; }
-        .btn-primary { background:linear-gradient(135deg,#ff4757,#ffa502); color:white; }
-        .btn-primary:hover { transform:translateY(-2px); box-shadow:0 5px 15px rgba(255,71,87,0.4); }
-        .btn-secondary { background:#e0e0e0; color:#666; }
-        .btn-secondary:hover { background:#d0d0d0; }
-        .btn:disabled { opacity:0.5; cursor:not-allowed; }
-        .results { display:none; text-align:center; }
-        .results.show { display:block; }
-        .results h2 { font-size:1.8em; color:#333; margin-bottom:10px; }
-        .score-circle { width:220px; height:220px; border-radius:50%; background:linear-gradient(135deg,#ff4757,#ff6348,#ffa502); color:white; display:flex; flex-direction:column; justify-content:center; align-items:center; margin:25px auto 15px; box-shadow:0 10px 30px rgba(255,71,87,0.4); }
-        .score-circle .nota-label { font-size:0.95em; opacity:0.85; letter-spacing:1px; text-transform:uppercase; margin-bottom:2px; }
-        .score-circle .nota-valor { font-size:4em; font-weight:bold; line-height:1; }
-        .score-circle .nota-total { font-size:1.1em; opacity:0.85; }
-        .score-detail { display:inline-block; background:#f8f8f8; border:2px solid #eee; border-radius:12px; padding:10px 28px; margin-bottom:20px; font-size:1em; color:#555; }
-        .score-detail span { font-weight:bold; color:#ff4757; }
-        .grade-bar-container { width:100%; max-width:480px; margin:0 auto 20px; }
-        .grade-bar-bg { width:100%; height:18px; background:#e0e0e0; border-radius:10px; overflow:hidden; margin-bottom:6px; }
-        .grade-bar-fill { height:100%; border-radius:10px; transition:width 1s ease; background:linear-gradient(90deg,#ff4757,#ff6348,#ffa502); }
-        .grade-bar-labels { display:flex; justify-content:space-between; font-size:0.8em; color:#aaa; padding:0 2px; }
-        .grade-badge { display:inline-block; padding:8px 22px; border-radius:50px; font-weight:bold; font-size:1em; margin-bottom:15px; letter-spacing:0.5px; }
-        .badge-excelente   { background:#e8f5e9; color:#2e7d32; border:2px solid #4caf50; }
-        .badge-bueno       { background:#e3f2fd; color:#1565c0; border:2px solid #42a5f5; }
-        .badge-regular     { background:#fff8e1; color:#f57f17; border:2px solid #ffca28; }
-        .badge-desaprobado { background:#ffebee; color:#c62828; border:2px solid #ef5350; }
-        .results p.result-msg { font-size:1.15em; color:#555; margin-bottom:25px; line-height:1.6; }
-        .results-motto { background:linear-gradient(135deg,#ff4757,#ffa502); color:white; padding:15px 30px; border-radius:50px; font-weight:bold; font-size:1.1em; display:inline-block; margin-top:10px; text-transform:uppercase; letter-spacing:1px; }
-        @media (max-width:600px) {
-            .container { padding:25px; } .logo-container { max-width:200px; } .logo-container img { max-height:100px; }
-            .header h1 { font-size:1.8em; } .question-text { font-size:1.1em; } .nav-buttons { flex-direction:column; }
-            .score-circle { width:180px; height:180px; } .score-circle .nota-valor { font-size:3.2em; }
-            .results-motto { font-size:0.9em; padding:12px 20px; }
+        .academy-header::before {
+            content: '';
+            position: absolute;
+            top: -40px; left: -40px; right: -40px; bottom: -40px;
+            background-image: repeating-linear-gradient(
+                45deg, transparent, transparent 28px,
+                rgba(255,255,255,0.06) 28px, rgba(255,255,255,0.06) 29px
+            );
         }
-        @media (max-width:400px) {
-            .container { padding:20px; } .logo-container { max-width:150px; } .logo-container img { max-height:80px; }
-            .option { padding:15px 20px; font-size:1em; }
+        .logo-container {
+            position: relative;
+            width: 100%; max-width: 300px;
+            margin: 0 auto 16px;
+        }
+        .logo-container img { width: 100%; height: auto; max-height: 120px; object-fit: contain; }
+        .teal-divider {
+            width: 80px; height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            margin: 10px auto 0;
+        }
+
+        /* INNER */
+        .inner { padding: 36px 44px 40px; }
+        .header { text-align: center; margin-bottom: 28px; }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9em;
+            color: var(--text);
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+        .header h1 span { color: var(--fucsia); }
+        .header p { color: var(--text-soft); font-size: 1em; font-weight: 600; }
+
+        /* PROGRESS */
+        .progress-wrapper { margin-bottom: 28px; }
+        .progress-info {
+            display: flex; justify-content: space-between;
+            font-size: 0.85em; color: var(--text-soft);
+            font-weight: 700; margin-bottom: 8px;
+        }
+        .progress-bar {
+            width: 100%; height: 10px;
+            background: var(--rose); border-radius: 10px; overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--fucsia), var(--fucsia-light));
+            width: 0%; transition: width 0.4s ease; border-radius: 10px;
+        }
+
+        /* QUESTION */
+        .question-card { display: none; animation: slideIn 0.35s ease; }
+        .question-card.active { display: block; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .question-number {
+            display: inline-block;
+            background: var(--fucsia-pale);
+            color: var(--fucsia);
+            font-weight: 700; font-size: 0.82em;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 5px 14px; border-radius: 50px; margin-bottom: 14px;
+            border: 1.5px solid var(--border);
+        }
+        .question-text {
+            font-size: 1.2em; color: var(--text);
+            margin-bottom: 22px; line-height: 1.65; font-weight: 600;
+        }
+        .options { display: flex; flex-direction: column; gap: 12px; }
+        .option {
+            padding: 16px 22px;
+            border: 2px solid var(--border);
+            border-radius: 12px; cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 1.05em; background: var(--warm-white);
+            color: var(--text);
+            display: flex; align-items: center; gap: 12px;
+        }
+        .option-letter {
+            width: 30px; height: 30px; min-width: 30px;
+            border-radius: 50%;
+            background: var(--fucsia-ultra);
+            border: 2px solid var(--fucsia-light);
+            color: var(--fucsia);
+            font-weight: 800; font-size: 0.85em;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.25s ease;
+        }
+        .option:hover {
+            border-color: var(--fucsia);
+            background: var(--fucsia-ultra);
+            transform: translateX(6px);
+            box-shadow: 0 4px 16px rgba(222,20,112,0.1);
+        }
+        .option:hover .option-letter {
+            background: var(--fucsia); color: white; border-color: var(--fucsia);
+        }
+        .option.selected { border-color: var(--fucsia); background: var(--fucsia-pale); }
+        .option.correct { border-color: var(--correct); background: var(--correct-bg); }
+        .option.correct .option-letter { background: var(--correct); color: white; border-color: var(--correct); }
+        .option.incorrect { border-color: var(--incorrect); background: var(--incorrect-bg); }
+        .option.incorrect .option-letter { background: var(--incorrect); color: white; border-color: var(--incorrect); }
+        .option.disabled { cursor: not-allowed; }
+        .option.disabled:hover { transform: none; box-shadow: none; }
+
+        /* JUSTIFICATION */
+        .justification {
+            display: none;
+            margin-top: 20px; padding: 18px 22px;
+            background: linear-gradient(to right, var(--fucsia-ultra), #fff8fc);
+            border-left: 4px solid var(--fucsia);
+            border-radius: 10px;
+            animation: fadeUp 0.4s ease;
+            font-size: 1em; color: var(--text-soft); line-height: 1.6;
+        }
+        .justification.show { display: block; }
+        .justification strong { color: var(--fucsia); }
+
+        /* NAV */
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; gap: 14px; }
+        .btn {
+            padding: 14px 32px; border: none; border-radius: 10px;
+            font-size: 1em; cursor: pointer;
+            transition: all 0.25s ease; font-weight: 700;
+            font-family: 'Nunito', sans-serif;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--fucsia), var(--fucsia-mid));
+            color: white;
+            box-shadow: 0 4px 16px rgba(222,20,112,0.3);
+            border: 2px solid transparent;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(222,20,112,0.4);
+            background: linear-gradient(135deg, var(--fucsia-mid), var(--fucsia-light));
+        }
+        .btn-secondary {
+            background: var(--warm-white); color: var(--text-soft); border: 2px solid var(--border);
+        }
+        .btn-secondary:hover {
+            background: var(--fucsia-pale); border-color: var(--fucsia); color: var(--fucsia);
+        }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+
+        /* RESULTS */
+        .results { display: none; text-align: center; }
+        .results.show { display: block; }
+        .results h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9em; color: var(--text); margin-bottom: 8px;
+        }
+        .score-circle {
+            width: 200px; height: 200px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--fucsia), var(--fucsia-mid));
+            border: 5px solid var(--rose);
+            color: white;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            margin: 28px auto 14px;
+            box-shadow: 0 12px 40px rgba(222,20,112,0.3), 0 0 0 10px rgba(222,20,112,0.08);
+        }
+        .nota-label { font-size: 0.82em; opacity: 0.85; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px; color: rgba(255,255,255,0.85); }
+        .nota-valor { font-family: 'Playfair Display', serif; font-size: 4em; font-weight: 900; line-height: 1; color: white; }
+        .nota-total { font-size: 1em; opacity: 0.75; }
+        .score-detail {
+            display: inline-block; background: var(--warm-white);
+            border: 2px solid var(--border); border-radius: 12px;
+            padding: 10px 28px; margin-bottom: 20px;
+            font-size: 1em; color: var(--text-soft);
+        }
+        .score-detail span { font-weight: 800; color: var(--fucsia); }
+        .grade-bar-container { width: 100%; max-width: 480px; margin: 0 auto 20px; }
+        .grade-bar-bg { width: 100%; height: 16px; background: var(--rose); border-radius: 10px; overflow: hidden; margin-bottom: 6px; }
+        .grade-bar-fill { height: 100%; border-radius: 10px; transition: width 1s ease; background: linear-gradient(90deg, var(--fucsia), var(--fucsia-light)); }
+        .grade-bar-labels { display: flex; justify-content: space-between; font-size: 0.78em; color: #bbb; padding: 0 2px; }
+        .grade-badge {
+            display: inline-block; padding: 8px 24px; border-radius: 50px;
+            font-weight: 800; font-size: 1em; margin-bottom: 16px; letter-spacing: 0.5px;
+        }
+        .badge-excelente   { background: #e6f7ee; color: #1a7a4a; border: 2px solid #2ecc71; }
+        .badge-bueno       { background: #e8f4fd; color: #1565c0; border: 2px solid #3498db; }
+        .badge-regular     { background: #fef9e7; color: #b7770d; border: 2px solid #f1c40f; }
+        .badge-desaprobado { background: #fdecea; color: #c0392b; border: 2px solid #e74c3c; }
+        .results p.result-msg {
+            font-size: 1.1em; color: var(--text-soft); margin-bottom: 24px;
+            line-height: 1.7; max-width: 500px; margin-left: auto; margin-right: auto;
+        }
+        .results-motto {
+            background: linear-gradient(135deg, var(--fucsia), var(--fucsia-mid));
+            color: white;
+            padding: 14px 32px; border-radius: 50px;
+            font-weight: 800; font-size: 1.05em;
+            display: inline-block; margin-top: 8px;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            box-shadow: 0 4px 16px rgba(222,20,112,0.3);
+        }
+
+        @media (max-width: 600px) {
+            .inner { padding: 24px 20px; }
+            .academy-header { padding: 24px 20px; }
+            .header h1 { font-size: 1.5em; }
+            .question-text { font-size: 1.05em; }
+            .nav-buttons { flex-direction: column; }
+            .score-circle { width: 160px; height: 160px; }
+            .nota-valor { font-size: 3.2em; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="academy-header">
-            <div class="logo-container">
-                <img src="logo_SOFIA-Photoroom.png" alt="Logo Academia">
-            </div>
+<div class="container">
+    <div class="academy-header">
+        <div class="logo-container">
+            <img src="logo_SOFIA-Photoroom.png" alt="Logo Academia Sofía">
         </div>
+        <div class="teal-divider"></div>
+    </div>
 
+    <div class="inner">
         <div class="header">
-            <h1>⚖️ Examen de Educación Cívica</h1>
-            <p>Ciclo repaso - 23 Preguntas</p>
+            <h1>📊 Examen de <span>Economía</span></h1>
+            <p>Ciclo Repaso · 31 Preguntas</p>
         </div>
 
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
+        <div class="progress-wrapper">
+            <div class="progress-info">
+                <span id="progressText">Pregunta 1 de 31</span>
+                <span id="progressPct">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
         </div>
 
         <div id="quizContainer"></div>
@@ -111,7 +302,7 @@
                 <div class="nota-total">/ 20</div>
             </div>
             <div class="score-detail">
-                Respuestas correctas: <span id="finalScore">0</span> de <span id="totalQuestions">23</span>
+                Respuestas correctas: <span id="finalScore">0</span> de <span id="totalQuestions">31</span>
             </div>
             <div class="grade-bar-container">
                 <div class="grade-bar-bg">
@@ -121,7 +312,7 @@
             </div>
             <div id="gradeBadge" class="grade-badge"></div>
             <p class="result-msg" id="resultMessage"></p>
-            <div class="results-motto">--Tutor Franklin--</div>
+            <div class="results-motto">— Tutor Franklin —</div>
             <br><br>
             <button class="btn btn-primary" onclick="restartQuiz()">🔄 Reintentar Examen</button>
         </div>
@@ -131,375 +322,334 @@
             <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Siguiente →</button>
         </div>
     </div>
+</div>
 
-    <script>
-        const questions = [
-            {
-                question: "Las normas jurídicas tienen fuerza coactiva y coercitiva, monopolizada por:",
-                options: ["El Poder Judicial", "El Presidente de la República", "El pueblo", "El Estado"],
-                correct: 3,
-                justification: "El Estado posee el monopolio legítimo de la fuerza, lo que significa que solo él puede imponer el cumplimiento de las normas jurídicas mediante sanciones o el uso de la fuerza legítima."
-            },
-            {
-                question: "La coerción es la presión o amenaza que obliga a actuar de acuerdo a las normas jurídicas, mientras que la coacción es el…",
-                options: [
-                    "Empleo o uso de la fuerza del Estado para obligar a cumplir las normas jurídicas.",
-                    "Uso de la fuerza de las personas para obligar a cumplir las normas jurídicas.",
-                    "Uso de la fuerza del Poder Judicial para obligar a cumplir las normas jurídicas.",
-                    "Uso de la fuerza de las autoridades para obligar a cumplir las normas jurídicas."
-                ],
-                correct: 0,
-                justification: "La coerción es presión o amenaza; la coacción implica el uso efectivo de la fuerza estatal para hacer cumplir la norma jurídica."
-            },
-            {
-                question: "La vigencia de las normas jurídicas se establece a partir de su:",
-                options: [
-                    "Aprobación por el órgano respectivo.",
-                    "Promulgación por la autoridad respectiva.",
-                    "Publicación oficial en el diario 'Perú 21'.",
-                    "Publicación oficial en el diario 'El Peruano'."
-                ],
-                correct: 3,
-                justification: "En el Perú, las normas entran en vigencia después de su publicación en el diario oficial El Peruano, salvo disposición distinta de la propia ley."
-            },
-            {
-                question: "Respecto a la estructura de la Constitución, son llamados 'los mínimos constitucionales', sin los cuales el Estado no estaría constituido:",
-                options: [
-                    "El preámbulo.",
-                    "La parte dogmática.",
-                    "La parte orgánica.",
-                    "La parte dogmática y la parte orgánica."
-                ],
-                correct: 3,
-                justification: "Toda Constitución requiere al menos dos partes esenciales: la dogmática (derechos fundamentales) y la orgánica (organización del Estado). Ambas son los mínimos constitucionales."
-            },
-            {
-                question: "Es la parte de la Constitución que regula los derechos y deberes fundamentales de la persona, la forma de gobierno y el régimen económico del Estado peruano:",
-                options: [
-                    "El preámbulo.",
-                    "Las Disposiciones Finales y Transitorias.",
-                    "La parte dogmática.",
-                    "La parte orgánica."
-                ],
-                correct: 2,
-                justification: "La parte dogmática establece los derechos fundamentales, deberes y principios constitucionales que rigen la relación entre el Estado y los ciudadanos."
-            },
-            {
-                question: "Es la parte de la Constitución que regula la estructura del Estado (los tres poderes del Estado, los Organismos Constitucionales Autónomos y los Gobiernos Locales y Regionales):",
-                options: [
-                    "El preámbulo.",
-                    "La parte orgánica.",
-                    "La parte dogmática.",
-                    "Las Disposiciones Finales y Transitorias."
-                ],
-                correct: 1,
-                justification: "La parte orgánica organiza el funcionamiento del Estado: poderes públicos, organismos autónomos y niveles de gobierno regional y local."
-            },
-            {
-                question: "Es el poder constituido para elaborar, dar u otorgar una Constitución Política del Estado:",
-                options: [
-                    "El Poder Legislativo.",
-                    "El Poder Ejecutivo.",
-                    "El Poder Judicial.",
-                    "El Poder Constituyente."
-                ],
-                correct: 3,
-                justification: "El poder constituyente es el poder soberano que crea o modifica la Constitución. Es originario porque no deriva de ninguna norma anterior."
-            },
-            {
-                question: "Uno de ellos NO tiene facultad de iniciativa de reforma constitucional:",
-                options: [
-                    "El Presidente de la República con aprobación del Consejo de Ministros.",
-                    "Los congresistas.",
-                    "Los ciudadanos (0.3% de la población electoral).",
-                    "Los Ministros de Estado."
-                ],
-                correct: 3,
-                justification: "Según la Constitución peruana, la iniciativa de reforma corresponde al Presidente con el Consejo de Ministros, a los congresistas y a los ciudadanos (0.3% del padrón). Los ministros por sí solos no pueden presentarla."
-            },
-            {
-                question: "Entre las libertades fundamentales protegidas por la Constitución, aquella que faculta el derecho a la revocación de autoridades corresponde a la libertad:",
-                options: ["Civil.", "Política.", "De expresión.", "Personal."],
-                correct: 1,
-                justification: "La revocatoria de autoridades es un mecanismo de participación política de los ciudadanos, por lo tanto pertenece a la libertad política."
-            },
-            {
-                question: "Juan es detenido arbitrariamente por la Policía, sin orden judicial ni delito flagrante. Juan se vio afectado en su libertad:",
-                options: ["Civil.", "Política.", "De expresión.", "Personal."],
-                correct: 3,
-                justification: "La detención sin orden judicial ni flagrancia vulnera el derecho fundamental a la libertad personal, reconocido en la Constitución Política del Perú."
-            },
-            {
-                question: "Uno de ellos NO corresponde a los derechos políticos:",
-                options: [
-                    "Participar en el referéndum.",
-                    "Iniciativa legislativa.",
-                    "La formación de sindicatos.",
-                    "La revocación de autoridades."
-                ],
-                correct: 2,
-                justification: "Los sindicatos pertenecen a los derechos laborales o sociales, no a los derechos políticos. Los derechos políticos están vinculados a la participación en el gobierno y la vida pública."
-            },
-            {
-                question: "El voto electoral es personal, libre, igual, secreto y obligatorio hasta los ______. Después de esa edad ______.",
-                options: [
-                    "75 años de edad – se extingue la obligación.",
-                    "75 años de edad – es opcional.",
-                    "70 años de edad – se pierde el derecho.",
-                    "70 años de edad – es opcional."
-                ],
-                correct: 3,
-                justification: "En el Perú el voto es obligatorio de 18 a 70 años. A partir de los 70 años se vuelve opcional, pero no se pierde el derecho a votar."
-            },
-            {
-                question: "El Poder Legislativo es:",
-                options: [
-                    "La institución representativa de los congresistas que reside en el Congreso de la República.",
-                    "La institución representativa del pueblo que reside en el Congreso de la República.",
-                    "La institución representativa encargada de ejecutar las leyes.",
-                    "La institución representativa de los congresistas y diputados."
-                ],
-                correct: 1,
-                justification: "Según el artículo 90 de la Constitución Política del Perú, el Poder Legislativo reside en el Congreso de la República, el cual representa al pueblo o nación peruana."
-            },
-            {
-                question: "El Congreso de la República es llamado también:",
-                options: [
-                    "Parlamento Nacional.",
-                    "Asamblea de representantes de la corte general.",
-                    "Asamblea de representantes de los congresistas.",
-                    "Asamblea de senadores y diputados."
-                ],
-                correct: 0,
-                justification: "En la teoría política y en la práctica parlamentaria, el Congreso también es conocido como Parlamento Nacional, ya que cumple la función legislativa del Estado."
-            },
-            {
-                question: "El titular de la potestad legislativa del Estado es:",
-                options: [
-                    "El Poder Judicial.",
-                    "El Congreso de la República.",
-                    "El presidente del Congreso.",
-                    "El Poder Ejecutivo."
-                ],
-                correct: 1,
-                justification: "El Congreso de la República es el órgano encargado de ejercer la potestad legislativa, es decir, crear, modificar o derogar las leyes del Estado."
-            },
-            {
-                question: "El Congreso de la República del Perú está conformado por:",
-                options: [
-                    "120 congresistas elegidos por sufragio popular por un período de 5 años.",
-                    "130 congresistas elegidos por sufragio particular por un período de 5 años.",
-                    "130 congresistas elegidos por los partidos políticos por un período de 5 años.",
-                    "130 congresistas elegidos por sufragio popular por un período de 5 años."
-                ],
-                correct: 3,
-                justification: "El Congreso peruano está integrado por 130 congresistas elegidos por sufragio universal y directo por un periodo de cinco años (periodo 2021–2026)."
-            },
-            {
-                question: "NO es atribución del Congreso de la República del Perú:",
-                options: [
-                    "Dar leyes y resoluciones legislativas.",
-                    "Velar por el respeto de la Constitución y de las leyes.",
-                    "Dar ordenanzas regionales y municipales.",
-                    "Autorizar el ingreso de tropas extranjeras al territorio nacional."
-                ],
-                correct: 2,
-                justification: "Las ordenanzas regionales y municipales son competencias de los gobiernos regionales y municipalidades respectivamente, no del Congreso de la República."
-            },
-            {
-                question: "Los congresistas de la República no pueden ser procesados ni presos sin previa autorización del Congreso o de la Comisión Permanente:",
-                options: [
-                    "Por las opiniones que emiten en el ejercicio de sus funciones.",
-                    "Por las opiniones y votos que emiten en el ejercicio de sus funciones.",
-                    "Excepto por delito no flagrante.",
-                    "Excepto por delito flagrante."
-                ],
-                correct: 3,
-                justification: "Según el artículo 93 de la Constitución, los congresistas no pueden ser detenidos ni procesados sin autorización del Congreso, salvo en caso de delito flagrante."
-            },
-            {
-                question: "Es un mecanismo de fiscalización para los ministros de Estado del Congreso de la República:",
-                options: [
-                    "Pedido de la hoja de vida.",
-                    "Estación de preguntas.",
-                    "Interpelación.",
-                    "Actos de investigación."
-                ],
-                correct: 2,
-                justification: "La interpelación es un mecanismo mediante el cual el Congreso cita obligatoriamente a un ministro para que explique y defienda su gestión o decisiones ante el pleno."
-            },
-            {
-                question: "Hay dos tipos de Legislatura:",
-                options: [
-                    "Bimestral y trimestral.",
-                    "Trimestral y semestral.",
-                    "Ordinarias y extraordinarias.",
-                    "Semestral y ordinaria."
-                ],
-                correct: 2,
-                justification: "Las legislaturas pueden ser ordinarias (periodos regulares de sesiones del Congreso) o extraordinarias (convocadas excepcionalmente por el Presidente o la Comisión Permanente)."
-            },
-            {
-                question: "Es un órgano interno del Congreso:",
-                options: [
-                    "Consejo de ministros.",
-                    "Tribunal Constitucional.",
-                    "Casa del pueblo.",
-                    "Comisiones."
-                ],
-                correct: 3,
-                justification: "Las comisiones parlamentarias son órganos internos del Congreso encargados de analizar proyectos de ley, fiscalizar la gestión pública y emitir dictámenes."
-            },
-            {
-                question: "La Comisión Permanente es:",
-                options: [
-                    "El órgano que reemplaza al Congreso durante todo el periodo legislativo.",
-                    "El órgano del Poder Legislativo que funciona durante el receso del Congreso, cuyos integrantes no exceden el 25% del total de congresistas.",
-                    "El órgano que dirige el Poder Ejecutivo.",
-                    "El órgano que reemplaza al Tribunal Constitucional."
-                ],
-                correct: 1,
-                justification: "La Comisión Permanente funciona durante el receso parlamentario. Sus miembros no pueden exceder el 25% del total de congresistas, según la Constitución."
-            },
-            {
-                question: "La finalidad de las Comisiones de investigación es:",
-                options: [
-                    "Iniciar investigaciones sobre cualquier asunto de interés privado.",
-                    "Iniciar investigaciones sobre cualquier asunto de interés personal.",
-                    "Iniciar investigaciones sobre cualquier asunto de interés público.",
-                    "Iniciar investigaciones sobre cualquier asunto de interés familiar."
-                ],
-                correct: 2,
-                justification: "Las comisiones investigadoras del Congreso se crean para investigar asuntos de interés público, como casos de corrupción, irregularidades en la gestión estatal o violaciones a derechos fundamentales."
-            }
-        ];
+<script>
+const questions = [
+    {
+        question: "Las guerras, el comercio exterior y el sometimiento de pueblos eran las 3 formas de conseguir riqueza. Esto sucedía en la doctrina:",
+        options: ["Keynesiana", "Neoclásica", "Mercantilismo", "Monetarista", "Clásica"],
+        correct: 2,
+        justification: "El mercantilismo sostenía que la riqueza de un país se obtenía mediante la acumulación de metales preciosos, expansión comercial y dominio sobre otros pueblos."
+    },
+    {
+        question: "Se considera como un conjunto de principios, normas, hipótesis y planteamientos que buscan interpretar una realidad económica:",
+        options: ["Leyes económicas", "Modelos económicos", "Teoría del crecimiento", "Doctrinas económicas", "Teorías económicas"],
+        correct: 3,
+        justification: "Las doctrinas económicas son sistemas de pensamiento que explican cómo funciona la economía y proponen soluciones a sus problemas."
+    },
+    {
+        question: "La política proteccionista basada en la política arancelaria la aplicó la doctrina:",
+        options: ["Fisiócrata", "Clásica", "Keynesiana", "Monetarista", "Mercantilista"],
+        correct: 4,
+        justification: "El mercantilismo promovía aranceles altos para proteger la producción nacional y favorecer la balanza comercial positiva."
+    },
+    {
+        question: "El aprovechamiento del mayor factor originario de la producción era _______, y se aplicaba en la doctrina:",
+        options: ["tierra - mercantilista", "tierra - fisiócrata", "tierra - clásico", "trabajo - clásica", "trabajo - fisiócrata"],
+        correct: 1,
+        justification: "Los fisiócratas consideraban la tierra como la única fuente real de riqueza y el único factor verdaderamente productivo."
+    },
+    {
+        question: "Se le conoce también como 'liberales' a la doctrina:",
+        options: ["Keynesiana", "Socialista", "Neoclásica", "Clásica", "Monetarista"],
+        correct: 3,
+        justification: "Los economistas clásicos (Adam Smith, Ricardo) defendían el libre mercado y la mínima intervención del Estado, siendo llamados liberales."
+    },
+    {
+        question: "En la economía socialista, las decisiones respecto a la producción son tomadas por:",
+        options: ["Los consumidores", "Los individuos", "La empresa", "El Estado", "Los profesionales"],
+        correct: 3,
+        justification: "En el socialismo el Estado planifica y decide la producción y distribución de bienes y servicios."
+    },
+    {
+        question: "Los clásicos en sus postulados consideran:",
+        options: ["La teoría de la plusvalía", "El desarrollo de la microeconomía", "La planificación del Estado", "El desarrollo de la macroeconomía", "La defensa del libre comercio"],
+        correct: 4,
+        justification: "Los clásicos postulaban el laissez-faire y defendían el libre comercio internacional como motor del desarrollo económico."
+    },
+    {
+        question: "La escuela keynesiana para incrementar la producción y el consumo en la economía debería:",
+        options: ["Incrementar el gasto público", "Incrementar el presupuesto público", "Realizar políticas fiscales contractivas", "Disminuir el gasto público", "Privatizar la empresa pública"],
+        correct: 0,
+        justification: "Keynes propuso aumentar el gasto público para estimular la demanda agregada y sacar a la economía de la recesión."
+    },
+    {
+        question: "Los actuales organismos reguladores de la economía tienen sus cimientos en la doctrina:",
+        options: ["Monetarista", "Keynesiana", "Mercantilismo", "Clásica", "Neoclásica"],
+        correct: 1,
+        justification: "El keynesianismo justificó la intervención del Estado en la economía, base de los organismos reguladores modernos."
+    },
+    {
+        question: "El dinero debe cumplir la función de _____ y debe ser respaldado con _____:",
+        options: ["un bien económico / la confianza del congreso", "medio de pago / la confianza del público", "concentración / una forma metálica", "medio de cambio / un banco", "unidad de cuenta / las reservas internacionales"],
+        correct: 1,
+        justification: "El dinero funciona como medio de pago y su valor depende de la confianza colectiva del público en su aceptación general."
+    },
+    {
+        question: "Al medir el valor de un bien o servicio nos referimos a una:",
+        options: ["Característica del dinero", "Función del dinero", "Clase de dinero", "Condición del dinero", "Durabilidad del dinero"],
+        correct: 1,
+        justification: "El dinero actúa como unidad de cuenta o medida de valor, permitiendo comparar el precio de distintos bienes y servicios."
+    },
+    {
+        question: "Si en una economía circulan dos monedas de igual valor legal pero distinto valor real, entonces la moneda mala desplaza de la circulación a la buena. Esto corresponde a la:",
+        options: ["Ley de Gossen", "Oferta monetaria", "Ley de Gresham", "Inflación", "Falsificación"],
+        correct: 2,
+        justification: "La Ley de Gresham establece que cuando coexisten dos monedas, la de menor valor real (moneda mala) desplaza a la de mayor valor real (moneda buena)."
+    },
+    {
+        question: "Definir la totalidad de medios de pago existentes y que circulan en una economía nos referimos a:",
+        options: ["Los bienes", "La oferta monetaria", "Depósitos a plazo", "Billetes", "Monedas"],
+        correct: 1,
+        justification: "La oferta monetaria es el total de dinero disponible y en circulación en una economía en un momento dado."
+    },
+    {
+        question: "Son los que constituyen los pasivos del Banco Central de Reserva:",
+        options: ["Reservas Internacionales Netas", "Crédito interno neto al sector privado", "Crédito interno al sector público", "Billetes y monedas emitidos", "Deuda interna del país"],
+        correct: 3,
+        justification: "El dinero emitido representa una obligación (pasivo) del Banco Central, ya que es una deuda del BCRP hacia quienes lo poseen."
+    },
+    {
+        question: "Los depósitos de los bancos forman parte de los:",
+        options: ["Pasivos del BCRP", "Activos del BCRP", "Pasivos del Banco de la Nación", "Activos del COFIDE", "Pasivos del COFIDE"],
+        correct: 0,
+        justification: "Los depósitos que los bancos comerciales mantienen en el BCRP son obligaciones del Banco Central, es decir, forman parte de sus pasivos."
+    },
+    {
+        question: "Al incremento continuo en el nivel general de precios se le denomina:",
+        options: ["Inflación", "Oferta monetaria", "Desempleo", "Elasticidad", "Devaluación"],
+        correct: 0,
+        justification: "La inflación es el aumento sostenido y generalizado del nivel de precios de bienes y servicios en una economía."
+    },
+    {
+        question: "Es una causa de la inflación:",
+        options: ["Caída del PBI", "Fuga de capitales", "Aumento rápido del circulante", "Encarecimiento de los créditos", "Disminución del circulante"],
+        correct: 2,
+        justification: "Cuando hay exceso de dinero en circulación, hay más dinero persiguiendo los mismos bienes, lo que genera presión inflacionaria (teoría cuantitativa del dinero)."
+    },
+    {
+        question: "Al descenso general en el nivel de precios se le denomina:",
+        options: ["Inflación galopante", "Inflación importada", "Deflación", "Inflación estructural", "Hiperinflación"],
+        correct: 2,
+        justification: "La deflación es la caída general y sostenida del nivel de precios, fenómeno opuesto a la inflación."
+    },
+    {
+        question: "Al incremento de más del 1000% de inflación se le denomina:",
+        options: ["Inflación moderada", "Inflación galopante", "Hiperinflación", "Deflación", "Inflación estructural"],
+        correct: 2,
+        justification: "La hiperinflación ocurre cuando los precios suben de forma extremadamente acelerada, superando el 1000% anual."
+    },
+    {
+        question: "La institución pública que en nuestro país está más relacionada con la función estabilizadora es:",
+        options: ["El Banco Central de Reserva", "La Superintendencia de Banca y Seguros", "La Contraloría General de la República", "El Ministerio de Producción", "El Poder Judicial"],
+        correct: 0,
+        justification: "El BCRP cumple la función estabilizadora mediante la política monetaria, controlando la inflación y estabilizando el tipo de cambio."
+    },
+    {
+        question: "Situación presupuestal en la cual los ingresos son iguales a los egresos del Estado:",
+        options: ["Superávit fiscal", "Superávit comercial", "Déficit comercial", "Equilibrio comercial", "Equilibrio fiscal"],
+        correct: 4,
+        justification: "Cuando los ingresos del Estado son exactamente iguales a sus gastos, se denomina equilibrio fiscal, sin superávit ni déficit."
+    },
+    {
+        question: "Órgano dependiente del Ministerio de Economía y Finanzas encargado de realizar la estimación de los ingresos y la previsión de los gastos del Estado:",
+        options: ["La Dirección Nacional de Presupuesto Público", "Los congresistas", "El Ministerio de Economía y Finanzas", "Los alcaldes de los gobiernos regionales y locales", "El Consejo de Ministros"],
+        correct: 0,
+        justification: "La DNPP es el órgano técnico especializado del MEF responsable de dirigir el proceso presupuestario del sector público."
+    },
+    {
+        question: "Institución pública autónoma encargada de realizar política monetaria:",
+        options: ["Banco de la Nación", "Ministerio de Economía y Finanzas", "Banco Central de Reserva", "Superintendencia de Banca y Seguros", "Los Bancos Comerciales"],
+        correct: 2,
+        justification: "El BCRP es el organismo constitucionalmente autónomo encargado de regular la moneda y el crédito del sistema financiero peruano."
+    },
+    {
+        question: "En el sector público, los instrumentos de política económica están a cargo de la política fiscal y la política monetaria, respectivamente:",
+        options: ["MEF y BCRP", "SBS y BCRP", "MEF y Banco de la Nación", "FMI y los Bancos", "SMV y BCR"],
+        correct: 0,
+        justification: "El MEF conduce la política fiscal (impuestos y gasto público) y el BCRP conduce la política monetaria (dinero y crédito)."
+    },
+    {
+        question: "Al utilizar instrumentos del gobierno como los impuestos y subvenciones, el gobierno está realizando una función:",
+        options: ["Reguladora", "Estabilizadora", "Anticíclica", "Proveedora", "De control"],
+        correct: 1,
+        justification: "Cuando el gobierno utiliza impuestos y subvenciones, está aplicando política fiscal para influir en la actividad económica (estimularla o frenarla)."
+    },
+    {
+        question: "Las fases del proceso presupuestario son:",
+        options: ["Programación, formulación, aprobación, ejecución, control y evaluación", "Formulación, aprobación, ejecución, control y evaluación", "Programación y evaluación", "Formulación, ejecución y control", "Aprobación, ejecución y evaluación"],
+        correct: 0,
+        justification: "El proceso presupuestario peruano tiene cinco fases: programación, formulación, aprobación, ejecución y evaluación/control, según la Ley General del Sistema Nacional de Presupuesto."
+    },
+    {
+        question: "Etapa del proceso presupuestario en la que se estiman los ingresos y la previsión de los gastos del Estado:",
+        options: ["Formulación", "Programación", "Ejecución", "Aprobación", "Control y evaluación"],
+        correct: 1,
+        justification: "En la fase de programación se estiman los ingresos que percibirá el Estado y se prevén los gastos necesarios para el siguiente año fiscal."
+    },
+    {
+        question: "La estimación de los ingresos y la previsión de los gastos del Estado está a cargo de:",
+        options: ["Dirección Nacional de Presupuesto Público", "Ministerio de Economía y Finanzas", "Consejo de Ministros", "Presidente de la República", "Poder Legislativo"],
+        correct: 0,
+        justification: "La DNPP es la responsable técnica de elaborar la estimación de ingresos y la previsión de gastos dentro del proceso presupuestario."
+    },
+    {
+        question: "¿Cuál de las siguientes alternativas constituye una consecuencia de la deuda externa?",
+        options: ["Mayor acercamiento entre países", "Mayor dependencia de capitales", "Aumento de la productividad", "Mayor bienestar social", "Mejora de la distribución de la renta"],
+        correct: 1,
+        justification: "La deuda externa genera dependencia financiera de organismos y países acreedores, condicionando las políticas económicas del país deudor."
+    },
+    {
+        question: "La dirección de la política del endeudamiento del Estado peruano está a cargo de:",
+        options: ["Ministerio de Economía y Finanzas", "La Superintendencia de Banca y Seguros", "El Consejo de Ministros", "El Parlamento Nacional", "La Contraloría General"],
+        correct: 0,
+        justification: "El MEF dirige y gestiona la política de endeudamiento público del Estado peruano, tanto interno como externo."
+    },
+    {
+        question: "Un mecanismo para cubrir el déficit presupuestal sería:",
+        options: ["Incrementar el gasto fiscal", "Reducir la emisión monetaria", "Reducir el gasto corriente", "Reducir la base tributaria", "Aumentar las exoneraciones tributarias"],
+        correct: 2,
+        justification: "Para cubrir un déficit presupuestal se deben reducir los egresos o aumentar los ingresos. La opción más directa es recortar el gasto corriente del Estado."
+    }
+];
 
-        let currentQuestion = 0;
-        let score = 0;
-        let answered = false;
-        const userAnswers = [];
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+const userAnswers = [];
 
-        function initQuiz() { renderQuestion(); updateProgress(); updateButtons(); }
+function initQuiz() { renderQuestion(); updateProgress(); updateButtons(); }
 
-        function renderQuestion() {
-            const q = questions[currentQuestion];
-            const container = document.getElementById('quizContainer');
-            container.innerHTML = `
-                <div class="question-card active">
-                    <div class="question-number">Pregunta ${currentQuestion + 1} de ${questions.length}</div>
-                    <div class="question-text">${q.question}</div>
-                    <div class="options">
-                        ${q.options.map((option, index) => `
-                            <div class="option" onclick="selectOption(${index})" data-index="${index}">
-                                <strong>${String.fromCharCode(65 + index)})</strong> ${option}
-                            </div>
-                        `).join('')}
+function renderQuestion() {
+    const q = questions[currentQuestion];
+    const container = document.getElementById('quizContainer');
+    const letters = ['A', 'B', 'C', 'D', 'E'];
+    container.innerHTML = `
+        <div class="question-card active">
+            <div class="question-number">Pregunta ${currentQuestion + 1} de ${questions.length}</div>
+            <div class="question-text">${q.question}</div>
+            <div class="options">
+                ${q.options.map((option, index) => `
+                    <div class="option" onclick="selectOption(${index})" data-index="${index}">
+                        <span class="option-letter">${letters[index]}</span>
+                        <span>${option}</span>
                     </div>
-                    <div class="justification" id="justification">
-                        <strong>⚖️ Justificación:</strong> ${q.justification}
-                    </div>
-                </div>
-            `;
-            if (userAnswers[currentQuestion] !== undefined) showPreviousAnswer();
-        }
+                `).join('')}
+            </div>
+            <div class="justification" id="justification">
+                <strong>💡 Justificación:</strong> ${q.justification}
+            </div>
+        </div>
+    `;
+    if (userAnswers[currentQuestion] !== undefined) showPreviousAnswer();
+}
 
-        function selectOption(index) {
-            if (answered) return;
-            const options = document.querySelectorAll('.option');
-            options.forEach(opt => opt.classList.remove('selected'));
-            options[index].classList.add('selected');
-            answered = true;
-            userAnswers[currentQuestion] = index;
-            const q = questions[currentQuestion];
-            setTimeout(() => {
-                if (index === q.correct) { options[index].classList.add('correct'); score++; }
-                else { options[index].classList.add('incorrect'); options[q.correct].classList.add('correct'); }
-                options.forEach(opt => opt.classList.add('disabled'));
-                document.getElementById('justification').classList.add('show');
-                updateButtons();
-            }, 300);
-        }
+function selectOption(index) {
+    if (answered) return;
+    const options = document.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    options[index].classList.add('selected');
+    answered = true;
+    userAnswers[currentQuestion] = index;
+    const q = questions[currentQuestion];
+    setTimeout(() => {
+        if (index === q.correct) { options[index].classList.add('correct'); score++; }
+        else { options[index].classList.add('incorrect'); options[q.correct].classList.add('correct'); }
+        options.forEach(opt => opt.classList.add('disabled'));
+        document.getElementById('justification').classList.add('show');
+        updateButtons();
+    }, 300);
+}
 
-        function showPreviousAnswer() {
-            const options = document.querySelectorAll('.option');
-            const userAnswer = userAnswers[currentQuestion];
-            const q = questions[currentQuestion];
-            options[userAnswer].classList.add('selected');
-            if (userAnswer === q.correct) { options[userAnswer].classList.add('correct'); }
-            else { options[userAnswer].classList.add('incorrect'); options[q.correct].classList.add('correct'); }
-            options.forEach(opt => opt.classList.add('disabled'));
-            document.getElementById('justification').classList.add('show');
-            answered = true;
-        }
+function showPreviousAnswer() {
+    const options = document.querySelectorAll('.option');
+    const userAnswer = userAnswers[currentQuestion];
+    const q = questions[currentQuestion];
+    options[userAnswer].classList.add('selected');
+    if (userAnswer === q.correct) options[userAnswer].classList.add('correct');
+    else { options[userAnswer].classList.add('incorrect'); options[q.correct].classList.add('correct'); }
+    options.forEach(opt => opt.classList.add('disabled'));
+    document.getElementById('justification').classList.add('show');
+    answered = true;
+}
 
-        function nextQuestion() {
-            if (!answered && userAnswers[currentQuestion] === undefined) { alert('Por favor, selecciona una respuesta antes de continuar.'); return; }
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                answered = userAnswers[currentQuestion] !== undefined;
-                renderQuestion(); updateProgress(); updateButtons();
-                window.scrollTo(0, 0);
-            } else { showResults(); }
-        }
+function nextQuestion() {
+    if (!answered && userAnswers[currentQuestion] === undefined) {
+        alert('Por favor, selecciona una respuesta antes de continuar.');
+        return;
+    }
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        answered = userAnswers[currentQuestion] !== undefined;
+        renderQuestion(); updateProgress(); updateButtons();
+        window.scrollTo(0, 0);
+    } else { showResults(); }
+}
 
-        function previousQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                answered = true;
-                renderQuestion(); updateProgress(); updateButtons();
-                window.scrollTo(0, 0);
-            }
-        }
+function previousQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        answered = true;
+        renderQuestion(); updateProgress(); updateButtons();
+        window.scrollTo(0, 0);
+    }
+}
 
-        function updateButtons() {
-            document.getElementById('prevBtn').disabled = currentQuestion === 0;
-            document.getElementById('nextBtn').textContent = (currentQuestion === questions.length - 1)
-                ? (answered ? 'Ver Resultados 🎯' : 'Finalizar Quiz 🎯')
-                : 'Siguiente →';
-        }
+function updateButtons() {
+    document.getElementById('prevBtn').disabled = currentQuestion === 0;
+    document.getElementById('nextBtn').textContent = (currentQuestion === questions.length - 1)
+        ? (answered ? 'Ver Resultados 🎯' : 'Finalizar 🎯')
+        : 'Siguiente →';
+}
 
-        function updateProgress() {
-            document.getElementById('progressFill').style.width = ((currentQuestion + 1) / questions.length * 100) + '%';
-        }
+function updateProgress() {
+    const pct = Math.round(((currentQuestion + 1) / questions.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
+    document.getElementById('progressPct').textContent = pct + '%';
+}
 
-        function showResults() {
-            document.getElementById('quizContainer').style.display = 'none';
-            document.getElementById('navButtons').style.display = 'none';
-            document.getElementById('results').classList.add('show');
-            const total = questions.length;
-            const nota = Math.round((score / total) * 20 * 10) / 10;
-            const notaDisplay = Number.isInteger(nota) ? nota : nota.toFixed(1);
-            document.getElementById('finalScore').textContent = score;
-            document.getElementById('totalQuestions').textContent = total;
-            document.getElementById('finalNota').textContent = notaDisplay;
-            setTimeout(() => { document.getElementById('gradeBarFill').style.width = ((nota / 20) * 100) + '%'; }, 200);
-            const badge = document.getElementById('gradeBadge');
-            const msg = document.getElementById('resultMessage');
-            if (nota >= 17) {
-                badge.textContent = '🏆 Sobresaliente'; badge.className = 'grade-badge badge-excelente';
-                msg.textContent = '¡Excelente desempeño! Dominas con solidez los temas de Educación Cívica. ¡Así se llega a la universidad! 🌟';
-            } else if (nota >= 14) {
-                badge.textContent = '👏 Aprobado — Bueno'; badge.className = 'grade-badge badge-bueno';
-                msg.textContent = '¡Muy bien! Tienes buenos conocimientos cívicos. Refuerza los temas donde fallaste y estarás listo para el examen de admisión. 📚';
-            } else if (nota >= 11) {
-                badge.textContent = '📖 Aprobado — Regular'; badge.className = 'grade-badge badge-regular';
-                msg.textContent = 'Vas por buen camino, pero aún hay temas que necesitan más repaso. ¡Tú puedes mejorar, sigue adelante! ✏️';
-            } else {
-                badge.textContent = '💪 Desaprobado — Sigue intentando'; badge.className = 'grade-badge badge-desaprobado';
-                msg.textContent = 'No te rindas. Cada error es una lección. Repasa los temas con calma, vuelve a intentarlo y verás cómo mejoras. ¡Ánimo! 🔥';
-            }
-        }
+function showResults() {
+    document.getElementById('quizContainer').style.display = 'none';
+    document.getElementById('navButtons').style.display = 'none';
+    document.getElementById('results').classList.add('show');
+    const total = questions.length;
+    // Nota redondeada al entero más cercano
+    const nota = Math.round((score / total) * 20);
+    document.getElementById('finalScore').textContent = score;
+    document.getElementById('totalQuestions').textContent = total;
+    document.getElementById('finalNota').textContent = nota;
+    setTimeout(() => {
+        document.getElementById('gradeBarFill').style.width = ((nota / 20) * 100) + '%';
+    }, 200);
+    const badge = document.getElementById('gradeBadge');
+    const msg = document.getElementById('resultMessage');
+    if (nota >= 17) {
+        badge.textContent = '🏆 Sobresaliente'; badge.className = 'grade-badge badge-excelente';
+        msg.textContent = '¡Excelente desempeño! Dominas con solidez los temas de Economía. ¡Así se llega a la universidad! 🌟';
+    } else if (nota >= 14) {
+        badge.textContent = '👏 Aprobado — Bueno'; badge.className = 'grade-badge badge-bueno';
+        msg.textContent = '¡Muy bien! Tienes buenos conocimientos económicos. Refuerza los temas donde fallaste y estarás listo para el examen de admisión. 📚';
+    } else if (nota >= 11) {
+        badge.textContent = '📖 Aprobado — Regular'; badge.className = 'grade-badge badge-regular';
+        msg.textContent = 'Vas por buen camino, pero aún hay temas que necesitan más repaso. ¡Tú puedes mejorar, sigue adelante! ✏️';
+    } else {
+        badge.textContent = '💪 Desaprobado — Sigue intentando'; badge.className = 'grade-badge badge-desaprobado';
+        msg.textContent = 'No te rindas. Cada error es una lección. Repasa los temas con calma, vuelve a intentarlo y verás cómo mejoras. ¡Ánimo! 🔥';
+    }
+}
 
-        function restartQuiz() {
-            currentQuestion = 0; score = 0; answered = false; userAnswers.length = 0;
-            document.getElementById('gradeBarFill').style.width = '0%';
-            document.getElementById('quizContainer').style.display = 'block';
-            document.getElementById('navButtons').style.display = 'flex';
-            document.getElementById('results').classList.remove('show');
-            initQuiz();
-        }
+function restartQuiz() {
+    currentQuestion = 0; score = 0; answered = false; userAnswers.length = 0;
+    document.getElementById('gradeBarFill').style.width = '0%';
+    document.getElementById('quizContainer').style.display = 'block';
+    document.getElementById('navButtons').style.display = 'flex';
+    document.getElementById('results').classList.remove('show');
+    initQuiz();
+}
 
-        initQuiz();
-    </script>
+initQuiz();
+</script>
 </body>
 </html>
