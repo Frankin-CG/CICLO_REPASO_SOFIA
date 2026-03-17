@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Examen de Economía - Academia Sofía</title>
+    <title>Examen de Historia del Perú - Academia Sofía</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --fucsia: #DE1470;
-            --fucsia-mid: #f0398a;
-            --fucsia-light: #ff6aaa;
-            --fucsia-pale: #fde8f3;
-            --fucsia-ultra: #fff0f8;
-            --rose: #fce4ef;
+            --amarillo: #f5a623;
+            --amarillo-mid: #f5ce00;
+            --amarillo-dark: #e0b800;
+            --amarillo-pale: #fef9cc;
+            --amarillo-ultra: #fffde8;
+            --naranja: #f5a623;
+            --naranja-mid: #f0921a;
+            --naranja-pale: #fff3e0;
+            --cafe-claro: #c8860a;
+            --cafe-suave: #a87020;
             --warm-white: #ffffff;
-            --warm-gray: #f5f0f3;
-            --text: #3a1a2e;
-            --text-soft: #7a5a6a;
-            --border: #f0d0e0;
+            --text: #5a3e00;
+            --text-soft: #8a6520;
+            --text-mid: #7a5010;
+            --border: #f0d060;
+            --border-pale: #faeaa0;
             --correct: #1a7a4a;
             --correct-bg: #e6f7ee;
             --incorrect: #c0392b;
@@ -26,7 +31,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Nunito', sans-serif;
-            background: linear-gradient(135deg, #fce4ef 0%, #fdf0f8 40%, #fce8f4 100%);
+            background: linear-gradient(135deg, #a18e0f 0%, #e9cf40 35%, #f3e262 70%, #f7d770 100%);
             min-height: 100vh;
             padding: 30px 20px;
             display: flex;
@@ -36,7 +41,7 @@
         .container {
             background: var(--warm-white);
             border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(222,20,112,0.15), 0 0 0 1px rgba(222,20,112,0.12);
+            box-shadow: 0 20px 60px rgba(247,219,38,0.45), 0 0 0 2px rgba(240,180,20,0.4);
             max-width: 860px;
             width: 100%;
             overflow: hidden;
@@ -49,7 +54,7 @@
 
         /* HEADER */
         .academy-header {
-            background: linear-gradient(135deg, var(--fucsia) 0%, var(--fucsia-mid) 60%, #f06292 100%);
+            background: linear-gradient(135deg, var(--amarillo) 0%, var(--naranja) 60%, #f5b830 100%);
             padding: 32px 40px 24px;
             text-align: center;
             position: relative;
@@ -61,8 +66,15 @@
             top: -40px; left: -40px; right: -40px; bottom: -40px;
             background-image: repeating-linear-gradient(
                 45deg, transparent, transparent 28px,
-                rgba(255,255,255,0.06) 28px, rgba(255,255,255,0.06) 29px
+                rgba(255,255,255,0.12) 28px, rgba(255,255,255,0.12) 29px
             );
+        }
+        .academy-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
         }
         .logo-container {
             position: relative;
@@ -72,7 +84,7 @@
         .logo-container img { width: 100%; height: auto; max-height: 120px; object-fit: contain; }
         .teal-divider {
             width: 80px; height: 3px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.85), transparent);
             margin: 10px auto 0;
         }
 
@@ -86,7 +98,7 @@
             margin-bottom: 6px;
             letter-spacing: -0.5px;
         }
-        .header h1 span { color: var(--fucsia); }
+        .header h1 span { color: var(--naranja-mid); }
         .header p { color: var(--text-soft); font-size: 1em; font-weight: 600; }
 
         /* PROGRESS */
@@ -98,11 +110,13 @@
         }
         .progress-bar {
             width: 100%; height: 10px;
-            background: var(--rose); border-radius: 10px; overflow: hidden;
+            background: var(--amarillo-pale);
+            border-radius: 10px; overflow: hidden;
+            border: 1px solid var(--border-pale);
         }
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--fucsia), var(--fucsia-light));
+            background: linear-gradient(90deg, var(--amarillo), var(--naranja));
             width: 0%; transition: width 0.4s ease; border-radius: 10px;
         }
 
@@ -115,12 +129,12 @@
         }
         .question-number {
             display: inline-block;
-            background: var(--fucsia-pale);
-            color: var(--fucsia);
-            font-weight: 700; font-size: 0.82em;
+            background: linear-gradient(135deg, var(--amarillo), #f5ce00);
+            color: var(--text);
+            font-weight: 800; font-size: 0.82em;
             letter-spacing: 1.5px; text-transform: uppercase;
             padding: 5px 14px; border-radius: 50px; margin-bottom: 14px;
-            border: 1.5px solid var(--border);
+            border: 1.5px solid var(--amarillo-dark);
         }
         .question-text {
             font-size: 1.2em; color: var(--text);
@@ -129,7 +143,7 @@
         .options { display: flex; flex-direction: column; gap: 12px; }
         .option {
             padding: 16px 22px;
-            border: 2px solid var(--border);
+            border: 2px solid var(--border-pale);
             border-radius: 12px; cursor: pointer;
             transition: all 0.25s ease;
             font-size: 1.05em; background: var(--warm-white);
@@ -139,23 +153,23 @@
         .option-letter {
             width: 30px; height: 30px; min-width: 30px;
             border-radius: 50%;
-            background: var(--fucsia-ultra);
-            border: 2px solid var(--fucsia-light);
-            color: var(--fucsia);
+            background: var(--amarillo-ultra);
+            border: 2px solid var(--border);
+            color: var(--cafe-suave);
             font-weight: 800; font-size: 0.85em;
             display: flex; align-items: center; justify-content: center;
             transition: all 0.25s ease;
         }
         .option:hover {
-            border-color: var(--fucsia);
-            background: var(--fucsia-ultra);
+            border-color: var(--naranja);
+            background: var(--naranja-pale);
             transform: translateX(6px);
-            box-shadow: 0 4px 16px rgba(222,20,112,0.1);
+            box-shadow: 0 4px 16px rgba(245,166,35,0.25);
         }
         .option:hover .option-letter {
-            background: var(--fucsia); color: white; border-color: var(--fucsia);
+            background: var(--amarillo); color: var(--text); border-color: var(--amarillo-dark);
         }
-        .option.selected { border-color: var(--fucsia); background: var(--fucsia-pale); }
+        .option.selected { border-color: var(--naranja); background: var(--naranja-pale); }
         .option.correct { border-color: var(--correct); background: var(--correct-bg); }
         .option.correct .option-letter { background: var(--correct); color: white; border-color: var(--correct); }
         .option.incorrect { border-color: var(--incorrect); background: var(--incorrect-bg); }
@@ -167,14 +181,14 @@
         .justification {
             display: none;
             margin-top: 20px; padding: 18px 22px;
-            background: linear-gradient(to right, var(--fucsia-ultra), #fff8fc);
-            border-left: 4px solid var(--fucsia);
+            background: linear-gradient(to right, var(--amarillo-pale), var(--amarillo-ultra));
+            border-left: 4px solid var(--amarillo);
             border-radius: 10px;
             animation: fadeUp 0.4s ease;
             font-size: 1em; color: var(--text-soft); line-height: 1.6;
         }
         .justification.show { display: block; }
-        .justification strong { color: var(--fucsia); }
+        .justification strong { color: var(--naranja-mid); }
 
         /* NAV */
         .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; gap: 14px; }
@@ -185,21 +199,22 @@
             font-family: 'Nunito', sans-serif;
         }
         .btn-primary {
-            background: linear-gradient(135deg, var(--fucsia), var(--fucsia-mid));
-            color: white;
-            box-shadow: 0 4px 16px rgba(222,20,112,0.3);
-            border: 2px solid transparent;
+            background: linear-gradient(135deg, var(--amarillo), var(--naranja));
+            color: var(--text);
+            box-shadow: 0 4px 16px rgba(247,219,38,0.5);
+            border: 2px solid var(--amarillo-dark);
         }
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(222,20,112,0.4);
-            background: linear-gradient(135deg, var(--fucsia-mid), var(--fucsia-light));
+            box-shadow: 0 8px 24px rgba(245,166,35,0.45);
+            background: linear-gradient(135deg, var(--naranja), var(--naranja-mid));
+            color: white;
         }
         .btn-secondary {
-            background: var(--warm-white); color: var(--text-soft); border: 2px solid var(--border);
+            background: var(--warm-white); color: var(--text-soft); border: 2px solid var(--border-pale);
         }
         .btn-secondary:hover {
-            background: var(--fucsia-pale); border-color: var(--fucsia); color: var(--fucsia);
+            background: var(--amarillo-pale); border-color: var(--border); color: var(--text-mid);
         }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
 
@@ -212,48 +227,48 @@
         }
         .score-circle {
             width: 200px; height: 200px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--fucsia), var(--fucsia-mid));
-            border: 5px solid var(--rose);
-            color: white;
+            background: linear-gradient(135deg, var(--amarillo), var(--naranja));
+            border: 5px solid var(--amarillo-pale);
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
             margin: 28px auto 14px;
-            box-shadow: 0 12px 40px rgba(222,20,112,0.3), 0 0 0 10px rgba(222,20,112,0.08);
+            box-shadow: 0 12px 40px rgba(247,219,38,0.5), 0 0 0 10px rgba(247,219,38,0.15);
         }
-        .nota-label { font-size: 0.82em; opacity: 0.85; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px; color: rgba(255,255,255,0.85); }
-        .nota-valor { font-family: 'Playfair Display', serif; font-size: 4em; font-weight: 900; line-height: 1; color: white; }
-        .nota-total { font-size: 1em; opacity: 0.75; }
+        .nota-label { font-size: 0.82em; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px; color: var(--text); opacity: 0.75; }
+        .nota-valor { font-family: 'Playfair Display', serif; font-size: 4em; font-weight: 900; line-height: 1; color: var(--text); }
+        .nota-total { font-size: 1em; color: var(--text-mid); }
         .score-detail {
             display: inline-block; background: var(--warm-white);
-            border: 2px solid var(--border); border-radius: 12px;
+            border: 2px solid var(--border-pale); border-radius: 12px;
             padding: 10px 28px; margin-bottom: 20px;
             font-size: 1em; color: var(--text-soft);
         }
-        .score-detail span { font-weight: 800; color: var(--fucsia); }
+        .score-detail span { font-weight: 800; color: var(--naranja-mid); }
         .grade-bar-container { width: 100%; max-width: 480px; margin: 0 auto 20px; }
-        .grade-bar-bg { width: 100%; height: 16px; background: var(--rose); border-radius: 10px; overflow: hidden; margin-bottom: 6px; }
-        .grade-bar-fill { height: 100%; border-radius: 10px; transition: width 1s ease; background: linear-gradient(90deg, var(--fucsia), var(--fucsia-light)); }
-        .grade-bar-labels { display: flex; justify-content: space-between; font-size: 0.78em; color: #bbb; padding: 0 2px; }
+        .grade-bar-bg { width: 100%; height: 16px; background: var(--amarillo-pale); border-radius: 10px; overflow: hidden; margin-bottom: 6px; border: 1px solid var(--border-pale); }
+        .grade-bar-fill { height: 100%; border-radius: 10px; transition: width 1s ease; background: linear-gradient(90deg, var(--amarillo), var(--naranja)); }
+        .grade-bar-labels { display: flex; justify-content: space-between; font-size: 0.78em; color: #cca840; padding: 0 2px; }
         .grade-badge {
             display: inline-block; padding: 8px 24px; border-radius: 50px;
             font-weight: 800; font-size: 1em; margin-bottom: 16px; letter-spacing: 0.5px;
         }
         .badge-excelente   { background: #e6f7ee; color: #1a7a4a; border: 2px solid #2ecc71; }
         .badge-bueno       { background: #e8f4fd; color: #1565c0; border: 2px solid #3498db; }
-        .badge-regular     { background: #fef9e7; color: #b7770d; border: 2px solid #f1c40f; }
+        .badge-regular     { background: var(--amarillo-pale); color: var(--cafe-claro); border: 2px solid var(--amarillo-dark); }
         .badge-desaprobado { background: #fdecea; color: #c0392b; border: 2px solid #e74c3c; }
         .results p.result-msg {
             font-size: 1.1em; color: var(--text-soft); margin-bottom: 24px;
             line-height: 1.7; max-width: 500px; margin-left: auto; margin-right: auto;
         }
         .results-motto {
-            background: linear-gradient(135deg, var(--fucsia), var(--fucsia-mid));
-            color: white;
+            background: linear-gradient(135deg, var(--amarillo), var(--naranja));
+            color: var(--text);
             padding: 14px 32px; border-radius: 50px;
             font-weight: 800; font-size: 1.05em;
             display: inline-block; margin-top: 8px;
             letter-spacing: 1.5px; text-transform: uppercase;
-            box-shadow: 0 4px 16px rgba(222,20,112,0.3);
+            box-shadow: 0 4px 16px rgba(247,219,38,0.4);
+            border: 2px solid var(--amarillo-dark);
         }
 
         @media (max-width: 600px) {
@@ -275,13 +290,11 @@
         </div>
         <div class="teal-divider"></div>
     </div>
-
     <div class="inner">
         <div class="header">
-            <h1>📊 Examen de <span>Economía</span></h1>
+            <h1>🏛️ Examen de <span>Historia del Perú</span></h1>
             <p>Ciclo Repaso · 31 Preguntas</p>
         </div>
-
         <div class="progress-wrapper">
             <div class="progress-info">
                 <span id="progressText">Pregunta 1 de 31</span>
@@ -291,9 +304,7 @@
                 <div class="progress-fill" id="progressFill"></div>
             </div>
         </div>
-
         <div id="quizContainer"></div>
-
         <div class="results" id="results">
             <h2>🎉 ¡Examen Completado!</h2>
             <div class="score-circle">
@@ -316,201 +327,199 @@
             <br><br>
             <button class="btn btn-primary" onclick="restartQuiz()">🔄 Reintentar Examen</button>
         </div>
-
         <div class="nav-buttons" id="navButtons">
             <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">← Anterior</button>
             <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Siguiente →</button>
         </div>
     </div>
 </div>
-
 <script>
 const questions = [
     {
-        question: "Las guerras, el comercio exterior y el sometimiento de pueblos eran las 3 formas de conseguir riqueza. Esto sucedía en la doctrina:",
-        options: ["Keynesiana", "Neoclásica", "Mercantilismo", "Monetarista", "Clásica"],
-        correct: 2,
-        justification: "El mercantilismo sostenía que la riqueza de un país se obtenía mediante la acumulación de metales preciosos, expansión comercial y dominio sobre otros pueblos."
-    },
-    {
-        question: "Se considera como un conjunto de principios, normas, hipótesis y planteamientos que buscan interpretar una realidad económica:",
-        options: ["Leyes económicas", "Modelos económicos", "Teoría del crecimiento", "Doctrinas económicas", "Teorías económicas"],
+        question: "Según el drama incaico, ¿quién capturó a Ollanta?",
+        options: ["Túpac Yupanqui", "Orcco Huarancca", "Piqui Chaki", "Rumi Ñahui", "Inca Pachacutec"],
         correct: 3,
-        justification: "Las doctrinas económicas son sistemas de pensamiento que explican cómo funciona la economía y proponen soluciones a sus problemas."
+        justification: "En el drama quechua Ollantay, el general Rumi Ñahui es quien captura a Ollanta mediante una estratagema cuando este se encontraba dormido."
     },
     {
-        question: "La política proteccionista basada en la política arancelaria la aplicó la doctrina:",
-        options: ["Fisiócrata", "Clásica", "Keynesiana", "Monetarista", "Mercantilista"],
+        question: "Reconocido como inca a la muerte de Atahualpa, encabezó en el siglo XVI la primera gran rebelión contra el poder español:",
+        options: ["Huáscar", "Sayri Tupac", "Manco Inca", "Pachacútec", "Túpac Amaru"],
+        correct: 2,
+        justification: "Manco Inca, coronado por los españoles, lideró en 1536 la gran rebelión indígena que sitió Cusco y Lima, siendo la primera gran resistencia organizada contra la dominación española en el siglo XVI."
+    },
+    {
+        question: "Eran los municipios de la época Virreinal, estaban a cargo de un alcalde y regidores:",
+        options: ["Las audiencias", "Los cabildos", "Los corregimientos", "Las intendencias", "Las municipalidades"],
+        correct: 1,
+        justification: "Los cabildos fueron las instituciones de gobierno local durante el Virreinato, equivalentes a los municipios actuales. Estaban presididos por un alcalde y compuestos por regidores elegidos entre los vecinos principales."
+    },
+    {
+        question: "Pueblo precerámico, ubicado en el desierto de Cupisnique, Lambayeque, creador de una industria lítica caracterizada por la elaboración de puntas de flecha bifaciales:",
+        options: ["Chavín", "Paracas", "Guitarrero", "Toquepala", "Paijan"],
         correct: 4,
-        justification: "El mercantilismo promovía aranceles altos para proteger la producción nacional y favorecer la balanza comercial positiva."
+        justification: "La cultura Paijanense es una de las más antiguas de la costa norte peruana, reconocida por sus puntas bifaciales de gran tamaño denominadas 'puntas de Paiján', halladas en el desierto de Cupisnique."
     },
     {
-        question: "El aprovechamiento del mayor factor originario de la producción era _______, y se aplicaba en la doctrina:",
-        options: ["tierra - mercantilista", "tierra - fisiócrata", "tierra - clásico", "trabajo - clásica", "trabajo - fisiócrata"],
-        correct: 1,
-        justification: "Los fisiócratas consideraban la tierra como la única fuente real de riqueza y el único factor verdaderamente productivo."
-    },
-    {
-        question: "Se le conoce también como 'liberales' a la doctrina:",
-        options: ["Keynesiana", "Socialista", "Neoclásica", "Clásica", "Monetarista"],
-        correct: 3,
-        justification: "Los economistas clásicos (Adam Smith, Ricardo) defendían el libre mercado y la mínima intervención del Estado, siendo llamados liberales."
-    },
-    {
-        question: "En la economía socialista, las decisiones respecto a la producción son tomadas por:",
-        options: ["Los consumidores", "Los individuos", "La empresa", "El Estado", "Los profesionales"],
-        correct: 3,
-        justification: "En el socialismo el Estado planifica y decide la producción y distribución de bienes y servicios."
-    },
-    {
-        question: "Los clásicos en sus postulados consideran:",
-        options: ["La teoría de la plusvalía", "El desarrollo de la microeconomía", "La planificación del Estado", "El desarrollo de la macroeconomía", "La defensa del libre comercio"],
+        question: "Su religión tuvo como dios principal a la divinidad llamada AIAPAEC; y otro secundario llamado NI o dios del mar; el jaguar simbolizó la fuerza y el poder. Se refiere a la cultura:",
+        options: ["Nasca", "Chavín", "Paracas", "Vicus", "Moche"],
         correct: 4,
-        justification: "Los clásicos postulaban el laissez-faire y defendían el libre comercio internacional como motor del desarrollo económico."
+        justification: "La cultura Moche (Mochica) tuvo como deidad principal a Aiapaec o 'El Degollador'. Ni era el dios del mar, y el jaguar era símbolo del poder y la fuerza en su iconografía."
     },
     {
-        question: "La escuela keynesiana para incrementar la producción y el consumo en la economía debería:",
-        options: ["Incrementar el gasto público", "Incrementar el presupuesto público", "Realizar políticas fiscales contractivas", "Disminuir el gasto público", "Privatizar la empresa pública"],
-        correct: 0,
-        justification: "Keynes propuso aumentar el gasto público para estimular la demanda agregada y sacar a la economía de la recesión."
-    },
-    {
-        question: "Los actuales organismos reguladores de la economía tienen sus cimientos en la doctrina:",
-        options: ["Monetarista", "Keynesiana", "Mercantilismo", "Clásica", "Neoclásica"],
-        correct: 1,
-        justification: "El keynesianismo justificó la intervención del Estado en la economía, base de los organismos reguladores modernos."
-    },
-    {
-        question: "El dinero debe cumplir la función de _____ y debe ser respaldado con _____:",
-        options: ["un bien económico / la confianza del congreso", "medio de pago / la confianza del público", "concentración / una forma metálica", "medio de cambio / un banco", "unidad de cuenta / las reservas internacionales"],
-        correct: 1,
-        justification: "El dinero funciona como medio de pago y su valor depende de la confianza colectiva del público en su aceptación general."
-    },
-    {
-        question: "Al medir el valor de un bien o servicio nos referimos a una:",
-        options: ["Característica del dinero", "Función del dinero", "Clase de dinero", "Condición del dinero", "Durabilidad del dinero"],
-        correct: 1,
-        justification: "El dinero actúa como unidad de cuenta o medida de valor, permitiendo comparar el precio de distintos bienes y servicios."
-    },
-    {
-        question: "Si en una economía circulan dos monedas de igual valor legal pero distinto valor real, entonces la moneda mala desplaza de la circulación a la buena. Esto corresponde a la:",
-        options: ["Ley de Gossen", "Oferta monetaria", "Ley de Gresham", "Inflación", "Falsificación"],
-        correct: 2,
-        justification: "La Ley de Gresham establece que cuando coexisten dos monedas, la de menor valor real (moneda mala) desplaza a la de mayor valor real (moneda buena)."
-    },
-    {
-        question: "Definir la totalidad de medios de pago existentes y que circulan en una economía nos referimos a:",
-        options: ["Los bienes", "La oferta monetaria", "Depósitos a plazo", "Billetes", "Monedas"],
-        correct: 1,
-        justification: "La oferta monetaria es el total de dinero disponible y en circulación en una economía en un momento dado."
-    },
-    {
-        question: "Son los que constituyen los pasivos del Banco Central de Reserva:",
-        options: ["Reservas Internacionales Netas", "Crédito interno neto al sector privado", "Crédito interno al sector público", "Billetes y monedas emitidos", "Deuda interna del país"],
+        question: "Las fuerzas rebeldes de Túpac Amaru II derrotaron al ejército español en noviembre de 1780 en:",
+        options: ["Tinta", "Tungasuca", "Checacupe", "Sangarará", "Surimana"],
         correct: 3,
-        justification: "El dinero emitido representa una obligación (pasivo) del Banco Central, ya que es una deuda del BCRP hacia quienes lo poseen."
+        justification: "La Batalla de Sangarará (18 de noviembre de 1780) fue la victoria más importante de las fuerzas de Túpac Amaru II, donde derrotaron al ejército realista encabezado por el corregidor Tiburcio Landa."
     },
     {
-        question: "Los depósitos de los bancos forman parte de los:",
-        options: ["Pasivos del BCRP", "Activos del BCRP", "Pasivos del Banco de la Nación", "Activos del COFIDE", "Pasivos del COFIDE"],
-        correct: 0,
-        justification: "Los depósitos que los bancos comerciales mantienen en el BCRP son obligaciones del Banco Central, es decir, forman parte de sus pasivos."
-    },
-    {
-        question: "Al incremento continuo en el nivel general de precios se le denomina:",
-        options: ["Inflación", "Oferta monetaria", "Desempleo", "Elasticidad", "Devaluación"],
-        correct: 0,
-        justification: "La inflación es el aumento sostenido y generalizado del nivel de precios de bienes y servicios en una economía."
-    },
-    {
-        question: "Es una causa de la inflación:",
-        options: ["Caída del PBI", "Fuga de capitales", "Aumento rápido del circulante", "Encarecimiento de los créditos", "Disminución del circulante"],
+        question: "El decreto que establece el Mar Territorial Peruano de las 200 millas se dio en el gobierno de:",
+        options: ["Fernando Belaunde Terry", "General Manuel A. Odría", "José Luis Bustamante y Rivero", "1er Gobierno de Manuel Prado y Ugarteche", "2do Gobierno de Manuel Prado y Ugarteche"],
         correct: 2,
-        justification: "Cuando hay exceso de dinero en circulación, hay más dinero persiguiendo los mismos bienes, lo que genera presión inflacionaria (teoría cuantitativa del dinero)."
+        justification: "El Decreto Supremo del 1 de agosto de 1947, promulgado durante el gobierno de Bustamante y Rivero, estableció la soberanía del Perú sobre las 200 millas marinas, siendo un hito en el derecho marítimo internacional."
     },
     {
-        question: "Al descenso general en el nivel de precios se le denomina:",
-        options: ["Inflación galopante", "Inflación importada", "Deflación", "Inflación estructural", "Hiperinflación"],
-        correct: 2,
-        justification: "La deflación es la caída general y sostenida del nivel de precios, fenómeno opuesto a la inflación."
-    },
-    {
-        question: "Al incremento de más del 1000% de inflación se le denomina:",
-        options: ["Inflación moderada", "Inflación galopante", "Hiperinflación", "Deflación", "Inflación estructural"],
-        correct: 2,
-        justification: "La hiperinflación ocurre cuando los precios suben de forma extremadamente acelerada, superando el 1000% anual."
-    },
-    {
-        question: "La institución pública que en nuestro país está más relacionada con la función estabilizadora es:",
-        options: ["El Banco Central de Reserva", "La Superintendencia de Banca y Seguros", "La Contraloría General de la República", "El Ministerio de Producción", "El Poder Judicial"],
-        correct: 0,
-        justification: "El BCRP cumple la función estabilizadora mediante la política monetaria, controlando la inflación y estabilizando el tipo de cambio."
-    },
-    {
-        question: "Situación presupuestal en la cual los ingresos son iguales a los egresos del Estado:",
-        options: ["Superávit fiscal", "Superávit comercial", "Déficit comercial", "Equilibrio comercial", "Equilibrio fiscal"],
+        question: "La reforma agraria que modificó el régimen de tenencia de la tierra fue dada por ley del:",
+        options: ["14 de junio de 1969", "14 de julio de 1969", "24 de julio de 1969", "28 de julio de 1969", "24 de junio de 1969"],
         correct: 4,
-        justification: "Cuando los ingresos del Estado son exactamente iguales a sus gastos, se denomina equilibrio fiscal, sin superávit ni déficit."
+        justification: "El Decreto Ley N° 17716, promulgado el 24 de junio de 1969 por el General Juan Velasco Alvarado, estableció la Reforma Agraria que transformó la estructura de propiedad de la tierra en el Perú."
     },
     {
-        question: "Órgano dependiente del Ministerio de Economía y Finanzas encargado de realizar la estimación de los ingresos y la previsión de los gastos del Estado:",
-        options: ["La Dirección Nacional de Presupuesto Público", "Los congresistas", "El Ministerio de Economía y Finanzas", "Los alcaldes de los gobiernos regionales y locales", "El Consejo de Ministros"],
+        question: "La teoría autoctonista que explica el origen de las 'Altas Culturas' peruanas está defendida por:",
+        options: ["Julio C. Tello Rojas", "Max Uhle", "Luis Guillermo Lumbreras", "Paul Rivet", "Federico Kauffman Doig"],
         correct: 0,
-        justification: "La DNPP es el órgano técnico especializado del MEF responsable de dirigir el proceso presupuestario del sector público."
+        justification: "Julio C. Tello, padre de la arqueología peruana, sostuvo que las altas culturas andinas tuvieron origen propio derivando de culturas amazónicas locales, sin influencia exterior."
     },
     {
-        question: "Institución pública autónoma encargada de realizar política monetaria:",
-        options: ["Banco de la Nación", "Ministerio de Economía y Finanzas", "Banco Central de Reserva", "Superintendencia de Banca y Seguros", "Los Bancos Comerciales"],
+        question: "El período que desarrolló el primer Imperio Pan-Andino, alrededor del año 1100 d.C., corresponde al:",
+        options: ["Intermedio Temprano", "Horizonte Tardío", "Intermedio Tardío", "Horizonte Medio", "Horizonte Temprano"],
+        correct: 3,
+        justification: "El Horizonte Medio (600–1100 d.C.) corresponde al apogeo de la cultura Wari, que consolidó el primer Estado panandino dominando a numerosos pueblos mediante centros administrativos y caminos."
+    },
+    {
+        question: "El conflicto militar del Alto Cenepa entre Perú y Ecuador llegó a su fin con:",
+        options: ["La firma del Protocolo de Paz, Amistad y Límites del 29-02-1942", "La Declaración de Paz de Itamaraty del 17-02-1995", "El Tratado de Río Blanco-Velarde del 08-09-1909", "El Tratado de Paz de Ancón del 20-10-1883", "El Tratado Polo Bustamante de 1909"],
+        correct: 1,
+        justification: "El conflicto del Cenepa (enero-febrero 1995) concluyó con la Declaración de Paz de Itamaraty, firmada el 17 de febrero de 1995 en Brasil, estableciendo el cese al fuego y el inicio de negociaciones definitivas."
+    },
+    {
+        question: "Las provincias de Grau, Bolognesi y Castilla pertenecen respectivamente a los departamentos de:",
+        options: ["Piura, Tacna, Loreto", "Junín, Moquegua, Lambayeque", "Apurímac, Áncash, Arequipa", "Tumbes, Huánuco, San Martín", "La Libertad, Amazonas, Cajamarca"],
         correct: 2,
-        justification: "El BCRP es el organismo constitucionalmente autónomo encargado de regular la moneda y el crédito del sistema financiero peruano."
+        justification: "La provincia de Grau pertenece al departamento de Apurímac; Bolognesi, a Áncash; y Castilla, a Arequipa."
     },
     {
-        question: "En el sector público, los instrumentos de política económica están a cargo de la política fiscal y la política monetaria, respectivamente:",
-        options: ["MEF y BCRP", "SBS y BCRP", "MEF y Banco de la Nación", "FMI y los Bancos", "SMV y BCR"],
-        correct: 0,
-        justification: "El MEF conduce la política fiscal (impuestos y gasto público) y el BCRP conduce la política monetaria (dinero y crédito)."
-    },
-    {
-        question: "Al utilizar instrumentos del gobierno como los impuestos y subvenciones, el gobierno está realizando una función:",
-        options: ["Reguladora", "Estabilizadora", "Anticíclica", "Proveedora", "De control"],
-        correct: 1,
-        justification: "Cuando el gobierno utiliza impuestos y subvenciones, está aplicando política fiscal para influir en la actividad económica (estimularla o frenarla)."
-    },
-    {
-        question: "Las fases del proceso presupuestario son:",
-        options: ["Programación, formulación, aprobación, ejecución, control y evaluación", "Formulación, aprobación, ejecución, control y evaluación", "Programación y evaluación", "Formulación, ejecución y control", "Aprobación, ejecución y evaluación"],
-        correct: 0,
-        justification: "El proceso presupuestario peruano tiene cinco fases: programación, formulación, aprobación, ejecución y evaluación/control, según la Ley General del Sistema Nacional de Presupuesto."
-    },
-    {
-        question: "Etapa del proceso presupuestario en la que se estiman los ingresos y la previsión de los gastos del Estado:",
-        options: ["Formulación", "Programación", "Ejecución", "Aprobación", "Control y evaluación"],
-        correct: 1,
-        justification: "En la fase de programación se estiman los ingresos que percibirá el Estado y se prevén los gastos necesarios para el siguiente año fiscal."
-    },
-    {
-        question: "La estimación de los ingresos y la previsión de los gastos del Estado está a cargo de:",
-        options: ["Dirección Nacional de Presupuesto Público", "Ministerio de Economía y Finanzas", "Consejo de Ministros", "Presidente de la República", "Poder Legislativo"],
-        correct: 0,
-        justification: "La DNPP es la responsable técnica de elaborar la estimación de ingresos y la previsión de gastos dentro del proceso presupuestario."
-    },
-    {
-        question: "¿Cuál de las siguientes alternativas constituye una consecuencia de la deuda externa?",
-        options: ["Mayor acercamiento entre países", "Mayor dependencia de capitales", "Aumento de la productividad", "Mayor bienestar social", "Mejora de la distribución de la renta"],
-        correct: 1,
-        justification: "La deuda externa genera dependencia financiera de organismos y países acreedores, condicionando las políticas económicas del país deudor."
-    },
-    {
-        question: "La dirección de la política del endeudamiento del Estado peruano está a cargo de:",
-        options: ["Ministerio de Economía y Finanzas", "La Superintendencia de Banca y Seguros", "El Consejo de Ministros", "El Parlamento Nacional", "La Contraloría General"],
-        correct: 0,
-        justification: "El MEF dirige y gestiona la política de endeudamiento público del Estado peruano, tanto interno como externo."
-    },
-    {
-        question: "Un mecanismo para cubrir el déficit presupuestal sería:",
-        options: ["Incrementar el gasto fiscal", "Reducir la emisión monetaria", "Reducir el gasto corriente", "Reducir la base tributaria", "Aumentar las exoneraciones tributarias"],
+        question: "Los Paracas le ganaron tierras al desierto construyendo:",
+        options: ["Acueductos", "Andenes", "Hoyas o Campos hundidos", "Desalitrando el terreno", "Fertilizando el terreno"],
         correct: 2,
-        justification: "Para cubrir un déficit presupuestal se deben reducir los egresos o aumentar los ingresos. La opción más directa es recortar el gasto corriente del Estado."
+        justification: "Los Paracas desarrollaron las 'hoyas' o 'mahamaes', campos hundidos que aprovechaban la humedad subterránea del subsuelo desértico para cultivar, siendo una destacada innovación agrícola."
+    },
+    {
+        question: "Según la Capitulación de Toledo, Hernando de Luque fue designado:",
+        options: ["Protector de naturales", "Conquistador", "Capitán general", "Gobernador", "Alguacil mayor"],
+        correct: 0,
+        justification: "En la Capitulación de Toledo (1529), Hernando de Luque —socio financiero de Pizarro y Almagro— recibió el título de 'Protector de naturales' y Obispo de Tumbes."
+    },
+    {
+        question: "Las tierras en el Incanato se dividían en:",
+        options: ["Tierras del Inca, del ayllu y del estado", "Tierras del estado, de las huacas y del ayllu", "Tierras del Sol, del Inca y del ayllu", "Tierras del Inca y del rey sol", "Tierras del Inca, del estado, de las huacas y del ayllu"],
+        correct: 2,
+        justification: "En el Tahuantinsuyo las tierras se dividían en tres grupos: las del Sol (culto religioso), las del Inca (Estado y ejército) y las del ayllu (comunidad)."
+    },
+    {
+        question: "La Junta Militar que presidía Manuel Odría dictó una ley para perseguir a los apristas y comunistas; esta ley fue:",
+        options: ["Ley de Seguridad Interior de la República", "Ley de Seguridad de la República", "Ley de la República", "Ley del Interior", "Ley de Seguridad"],
+        correct: 0,
+        justification: "La Ley de Seguridad Interior de la República (1948), promulgada por Odría, fue el instrumento legal para perseguir y encarcelar a militantes apristas y comunistas, restringiendo las libertades políticas."
+    },
+    {
+        question: "El ferrocarril Lima-Callao, señal de prosperidad generada por la venta del guano, se realizó durante el gobierno de:",
+        options: ["Primer Gobierno de Ramón Castilla (1845–1851)", "Gobierno de José Echenique (1851–1854)", "Segundo Gobierno de Ramón Castilla (1855–1862)", "Gobierno de José Balta (1868–1872)", "Gobierno de Manuel Pardo y Lavalle (1872–1876)"],
+        correct: 0,
+        justification: "El ferrocarril Lima-Callao, inaugurado el 17 de mayo de 1851, fue el primero de América del Sur y se construyó durante el primer gobierno de Ramón Castilla, financiado con ingresos del guano."
+    },
+    {
+        question: "Las 'Cabezas Clavas' son esculturas de piedra insertadas en la pared del templo. Estas pertenecen a:",
+        options: ["Chavín (Horizonte Temprano)", "Nasca (Fin Horizonte Temprano)", "Paracas (Fin Horizonte Temprano)", "Pukara (Intermedio Temprano)", "Vicus (Intermedio Temprano)"],
+        correct: 0,
+        justification: "Las cabezas clavas son esculturas en forma de cabezas humanas o felinas que adornan los muros del Templo de Chavín de Huántar, símbolo emblemático del Horizonte Temprano."
+    },
+    {
+        question: "Elaboró el Primer Presupuesto Estatal para el período 1845–1846:",
+        options: ["Nicolás de Piérola", "Miguel Iglesias", "Simón Bolívar", "Ramón Castilla", "Mariano Ignacio Prado"],
+        correct: 3,
+        justification: "Ramón Castilla, durante su primer gobierno (1845–1851), elaboró y promulgó el primer presupuesto estatal de la historia republicana peruana, modernizando la administración fiscal."
+    },
+    {
+        question: "Presidió la Segunda gran rebelión del Cusco:",
+        options: ["Hipólito Unanue", "Francisco de Zela", "Juan Pablo Vizcardo y Guzmán", "Mateo Pumacahua", "José Baquíjano y Carrillo"],
+        correct: 3,
+        justification: "Mateo García Pumacahua encabezó junto con los hermanos Angulo la rebelión del Cusco de 1814–1815, considerada la segunda gran rebelión precursora de la independencia del Perú."
+    },
+    {
+        question: "Durante la época colonial, las mitas más famosas fueron:",
+        options: ["Lima y Arequipa", "Huancavelica y Potosí", "Cusco y Arequipa", "Potosí y Arequipa", "Lima y Huancavelica"],
+        correct: 1,
+        justification: "Las mitas mineras de Huancavelica (mercurio) y Potosí (plata) fueron las más importantes y devastadoras del Virreinato, empleando a miles de indígenas en condiciones extremas."
+    },
+    {
+        question: "En su gobierno se creó el Banco de la Nación:",
+        options: ["Augusto B. Leguía", "Juan Velasco Alvarado", "Juan José Bustamante y Rivera", "Manuel A. Odría", "Fernando Belaúnde Terry"],
+        correct: 1,
+        justification: "El Banco de la Nación fue creado por Decreto Ley 16000 en 1966, y su consolidación como entidad financiera del Estado ocurrió durante el gobierno revolucionario de Juan Velasco Alvarado (1968–1975)."
+    },
+    {
+        question: "¿Qué término utilizó Augusto B. Leguía para identificar al régimen que se mantuvo por once años en el poder?",
+        options: ["Patria Nueva", "Estado moderno", "Estado Nuevo", "Ninguna anterior", "Cambio Social"],
+        correct: 0,
+        justification: "Augusto B. Leguía denominó 'Patria Nueva' a su régimen autoritario que gobernó el Perú entre 1919 y 1930, impulsando modernización pero concentrando el poder y reprimiendo la oposición."
+    },
+    {
+        question: "¿En qué lugar se produjo el encuentro entre San Martín y Bolívar para consolidar la independencia del Perú?",
+        options: ["Ninguna de las anteriores", "Quito", "Caracas", "Tumbes", "Nueva Granada"],
+        correct: 0,
+        justification: "La famosa Entrevista de Guayaquil se realizó el 26 y 27 de julio de 1822 en Guayaquil (Ecuador), ciudad que no figura entre las opciones, por lo que la respuesta es 'Ninguna de las anteriores'."
+    },
+    {
+        question: "¿A qué se le denominó 'Interpretación auténtica' dentro de la historia del Perú?",
+        options: ["Ninguna de las anteriores", "A la interpretación que en 1996 hizo la mayoría fujimorista en el Congreso del Art. 112° de la Constitución de 1993", "A la interpretación del Tribunal Constitucional que posibilitó la segunda reelección de Alberto Fujimori", "A la doctrina jurídica que reinterpretó la Constitución de 1979", "A los acuerdos políticos del gobierno de Toledo sobre la reelección"],
+        correct: 1,
+        justification: "La 'interpretación auténtica' fue una ley aprobada por el Congreso fujimorista en 1996 que reinterpretó el Art. 112° para permitir la reelección de Fujimori, argumentando que su primer período no contaba bajo la nueva Constitución."
+    },
+    {
+        question: "'El Perú es desde este momento libre e independiente por la voluntad general de los pueblos...' La intención principal del texto es:",
+        options: ["Emular a don José de San Martín y su campaña libertadora", "Señalar la necesidad de la independencia del Perú", "Darle a la patria libertad y soberanía", "Declarar la independencia de un país", "Mostrar los errores históricos del país"],
+        correct: 3,
+        justification: "El fragmento corresponde al Acta de la Independencia del Perú, proclamada el 28 de julio de 1821 por José de San Martín. Su intención principal es declarar formalmente la independencia de la nación."
+    },
+    {
+        question: "La teoría que sostiene que fueron los antiguos peruanos quienes poblaron diversas islas polinésicas fue planteada por:",
+        options: ["Julio C. Tello", "Alex Hrdlicka", "Florentino Ameghino", "Méndez Correa", "Thor Heyerdahl"],
+        correct: 4,
+        justification: "Thor Heyerdahl demostró con la expedición del Kon-Tiki (1947) que era posible navegar desde Perú hasta la Polinesia en balsa, sosteniendo que pobladores sudamericanos habrían llegado a las islas del Pacífico."
+    },
+    {
+        question: "La cultura del Horizonte Medio que se caracterizó por su planificación urbana, red de caminos y relación con los motivos de Tiahuanaco fue:",
+        options: ["La cultura Vicus", "La cultura Chavín", "La cultura Moche", "La cultura Wari", "La cultura Inca"],
+        correct: 3,
+        justification: "La cultura Wari (Horizonte Medio, 600–1100 d.C.) destacó por la planificación de sus centros urbanos, su extensa red de caminos panandinos y el sincretismo con la iconografía de Tiahuanaco."
+    },
+    {
+        question: "La batalla de Tarapacá se llevó a cabo:",
+        options: ["El 30 de noviembre de 1879", "El 04 de noviembre de 1879", "El 24 de noviembre de 1879", "El 27 de noviembre de 1879", "El 25 de noviembre de 1879"],
+        correct: 3,
+        justification: "La Batalla de Tarapacá se libró el 27 de noviembre de 1879. Las fuerzas peruanas al mando del coronel Andrés Avelino Cáceres lograron una importante victoria táctica pese a estar en inferioridad numérica."
+    },
+    {
+        question: "El Imperio de los Incas estuvo dividido en 4 suyos, siendo los más extensos:",
+        options: ["El Antisuyo y el Contisuyo", "El Contisuyo y el Collasuyo", "El Antisuyo y el Collasuyo", "El Chinchaysuyo y el Antisuyo", "El Chinchaysuyo y el Collasuyo"],
+        correct: 4,
+        justification: "El Chinchaysuyo (norte, desde el Cusco hasta Colombia) y el Collasuyo (sur, hasta Chile y Argentina) fueron los dos suyos de mayor extensión territorial del Tahuantinsuyo."
+    },
+    {
+        question: "Las llamadas 'Nuevas Leyes' dadas por Carlos V a favor de los indígenas, que motivaron la rebelión de Gonzalo Pizarro, afectaban a:",
+        options: ["Los corregimientos", "Las intendencias", "Los mitimaes", "Las encomiendas", "Los cacicazgos"],
+        correct: 3,
+        justification: "Las Leyes Nuevas de 1542 buscaban abolir las encomiendas hereditarias y limitar el poder de los encomenderos. Esta amenaza a sus privilegios provocó la rebelión de Gonzalo Pizarro en el Perú."
     }
 ];
 
@@ -615,7 +624,6 @@ function showResults() {
     document.getElementById('navButtons').style.display = 'none';
     document.getElementById('results').classList.add('show');
     const total = questions.length;
-    // Nota redondeada al entero más cercano
     const nota = Math.round((score / total) * 20);
     document.getElementById('finalScore').textContent = score;
     document.getElementById('totalQuestions').textContent = total;
@@ -627,10 +635,10 @@ function showResults() {
     const msg = document.getElementById('resultMessage');
     if (nota >= 17) {
         badge.textContent = '🏆 Sobresaliente'; badge.className = 'grade-badge badge-excelente';
-        msg.textContent = '¡Excelente desempeño! Dominas con solidez los temas de Economía. ¡Así se llega a la universidad! 🌟';
+        msg.textContent = '¡Excelente desempeño! Dominas con solidez los temas de Historia del Perú. ¡Así se llega a la universidad! 🌟';
     } else if (nota >= 14) {
         badge.textContent = '👏 Aprobado — Bueno'; badge.className = 'grade-badge badge-bueno';
-        msg.textContent = '¡Muy bien! Tienes buenos conocimientos económicos. Refuerza los temas donde fallaste y estarás listo para el examen de admisión. 📚';
+        msg.textContent = '¡Muy bien! Tienes buenos conocimientos históricos. Refuerza los temas donde fallaste y estarás listo para el examen de admisión. 📚';
     } else if (nota >= 11) {
         badge.textContent = '📖 Aprobado — Regular'; badge.className = 'grade-badge badge-regular';
         msg.textContent = 'Vas por buen camino, pero aún hay temas que necesitan más repaso. ¡Tú puedes mejorar, sigue adelante! ✏️';
