@@ -3,661 +3,671 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Examen de Historia del Perú - Academia Sofía</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Examen de Anatomía - Ciclo repaso</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --amarillo: #f5a623;
-            --amarillo-mid: #f5ce00;
-            --amarillo-dark: #e0b800;
-            --amarillo-pale: #fef9cc;
-            --amarillo-ultra: #fffde8;
-            --naranja: #f5a623;
-            --naranja-mid: #f0921a;
-            --naranja-pale: #fff3e0;
-            --cafe-claro: #c8860a;
-            --cafe-suave: #a87020;
-            --warm-white: #ffffff;
-            --text: #5a3e00;
-            --text-soft: #8a6520;
-            --text-mid: #7a5010;
-            --border: #f0d060;
-            --border-pale: #faeaa0;
-            --correct: #1a7a4a;
-            --correct-bg: #e6f7ee;
-            --incorrect: #c0392b;
-            --incorrect-bg: #fdecea;
+            --azul:        #1a6db5;
+            --azul-mid:    #2484d4;
+            --azul-light:  #4fa3e8;
+            --azul-pale:   #e8f4fd;
+            --azul-ultra:  #f0f8ff;
+            --verde:       #1a8a5a;
+            --verde-mid:   #22a86e;
+            --verde-pale:  #e6f7ee;
+            --rojo:        #c0392b;
+            --rojo-pale:   #fdecea;
+            --blanco:      #ffffff;
+            --gris-fondo:  #f4f7fb;
+            --texto:       #12263a;
+            --texto-soft:  #4a6582;
+            --texto-mid:   #2d4e6a;
+            --borde:       #b8d8f5;
+            --borde-pale:  #d6eaf8;
+            --sombra:      rgba(26,109,181,0.15);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family: 'Nunito', sans-serif;
-            background: linear-gradient(135deg, #a18e0f 0%, #e9cf40 35%, #f3e262 70%, #f7d770 100%);
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(160deg, #0d3c6e 0%, #1a6db5 40%, #1aaf7a 100%);
             min-height: 100vh;
-            padding: 30px 20px;
+            padding: 36px 20px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
         }
+
+        /* FONDO DECORATIVO */
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                radial-gradient(circle at 15% 20%, rgba(255,255,255,0.07) 0%, transparent 50%),
+                radial-gradient(circle at 85% 80%, rgba(26,175,122,0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
         .container {
-            background: var(--warm-white);
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(247,219,38,0.45), 0 0 0 2px rgba(240,180,20,0.4);
+            background: var(--blanco);
+            border-radius: 20px;
+            box-shadow: 0 24px 64px rgba(13,60,110,0.35), 0 0 0 1px rgba(74,163,232,0.3);
             max-width: 860px;
             width: 100%;
             overflow: hidden;
-            animation: fadeUp 0.6s ease;
+            animation: aparecer 0.55s cubic-bezier(0.16,1,0.3,1);
         }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes aparecer {
+            from { opacity:0; transform:translateY(36px) scale(0.98); }
+            to   { opacity:1; transform:translateY(0) scale(1); }
         }
 
-        /* HEADER */
-        .academy-header {
-            background: linear-gradient(135deg, var(--amarillo) 0%, var(--naranja) 60%, #f5b830 100%);
-            padding: 32px 40px 24px;
+        /* ── CABECERA ── */
+        .academia-header {
+            background: linear-gradient(135deg, #0d3c6e 0%, #1a6db5 55%, #1aaf7a 100%);
+            padding: 28px 40px 22px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-        .academy-header::before {
-            content: '';
-            position: absolute;
-            top: -40px; left: -40px; right: -40px; bottom: -40px;
-            background-image: repeating-linear-gradient(
-                45deg, transparent, transparent 28px,
-                rgba(255,255,255,0.12) 28px, rgba(255,255,255,0.12) 29px
-            );
+        .academia-header::before {
+            content:'';
+            position:absolute; inset:0;
+            background-image:
+                repeating-linear-gradient(60deg, transparent, transparent 22px, rgba(255,255,255,0.04) 22px, rgba(255,255,255,0.04) 23px),
+                repeating-linear-gradient(-60deg, transparent, transparent 22px, rgba(255,255,255,0.04) 22px, rgba(255,255,255,0.04) 23px);
         }
-        .academy-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+        .academia-header::after {
+            content:'';
+            position:absolute; bottom:0; left:0; right:0; height:3px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
         }
         .logo-container {
-            position: relative;
-            width: 100%; max-width: 300px;
-            margin: 0 auto 16px;
+            position:relative; width:100%; max-width:280px;
+            margin:0 auto 12px;
         }
-        .logo-container img { width: 100%; height: auto; max-height: 120px; object-fit: contain; }
-        .teal-divider {
-            width: 80px; height: 3px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.85), transparent);
-            margin: 10px auto 0;
-        }
-
-        /* INNER */
-        .inner { padding: 36px 44px 40px; }
-        .header { text-align: center; margin-bottom: 28px; }
-        .header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.9em;
-            color: var(--text);
-            margin-bottom: 6px;
-            letter-spacing: -0.5px;
-        }
-        .header h1 span { color: var(--naranja-mid); }
-        .header p { color: var(--text-soft); font-size: 1em; font-weight: 600; }
-
-        /* PROGRESS */
-        .progress-wrapper { margin-bottom: 28px; }
-        .progress-info {
-            display: flex; justify-content: space-between;
-            font-size: 0.85em; color: var(--text-soft);
-            font-weight: 700; margin-bottom: 8px;
-        }
-        .progress-bar {
-            width: 100%; height: 10px;
-            background: var(--amarillo-pale);
-            border-radius: 10px; overflow: hidden;
-            border: 1px solid var(--border-pale);
-        }
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--amarillo), var(--naranja));
-            width: 0%; transition: width 0.4s ease; border-radius: 10px;
+        .logo-container img { width:100%; height:auto; max-height:110px; object-fit:contain; }
+        .divisor-cabecera {
+            width:60px; height:2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+            margin:8px auto 0;
         }
 
-        /* QUESTION */
-        .question-card { display: none; animation: slideIn 0.35s ease; }
-        .question-card.active { display: block; }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
+        /* ── INTERIOR ── */
+        .inner { padding:36px 44px 42px; }
+        .encabezado { text-align:center; margin-bottom:28px; }
+        .encabezado h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.85em;
+            color: var(--texto);
+            margin-bottom: 5px;
+            letter-spacing: -0.3px;
         }
-        .question-number {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--amarillo), #f5ce00);
-            color: var(--text);
-            font-weight: 800; font-size: 0.82em;
-            letter-spacing: 1.5px; text-transform: uppercase;
-            padding: 5px 14px; border-radius: 50px; margin-bottom: 14px;
-            border: 1.5px solid var(--amarillo-dark);
-        }
-        .question-text {
-            font-size: 1.2em; color: var(--text);
-            margin-bottom: 22px; line-height: 1.65; font-weight: 600;
-        }
-        .options { display: flex; flex-direction: column; gap: 12px; }
-        .option {
-            padding: 16px 22px;
-            border: 2px solid var(--border-pale);
-            border-radius: 12px; cursor: pointer;
-            transition: all 0.25s ease;
-            font-size: 1.05em; background: var(--warm-white);
-            color: var(--text);
-            display: flex; align-items: center; gap: 12px;
-        }
-        .option-letter {
-            width: 30px; height: 30px; min-width: 30px;
-            border-radius: 50%;
-            background: var(--amarillo-ultra);
-            border: 2px solid var(--border);
-            color: var(--cafe-suave);
-            font-weight: 800; font-size: 0.85em;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.25s ease;
-        }
-        .option:hover {
-            border-color: var(--naranja);
-            background: var(--naranja-pale);
-            transform: translateX(6px);
-            box-shadow: 0 4px 16px rgba(245,166,35,0.25);
-        }
-        .option:hover .option-letter {
-            background: var(--amarillo); color: var(--text); border-color: var(--amarillo-dark);
-        }
-        .option.selected { border-color: var(--naranja); background: var(--naranja-pale); }
-        .option.correct { border-color: var(--correct); background: var(--correct-bg); }
-        .option.correct .option-letter { background: var(--correct); color: white; border-color: var(--correct); }
-        .option.incorrect { border-color: var(--incorrect); background: var(--incorrect-bg); }
-        .option.incorrect .option-letter { background: var(--incorrect); color: white; border-color: var(--incorrect); }
-        .option.disabled { cursor: not-allowed; }
-        .option.disabled:hover { transform: none; box-shadow: none; }
+        .encabezado h1 span { color: var(--azul-mid); font-style: italic; }
+        .encabezado p { color: var(--texto-soft); font-size:0.95em; font-weight:600; letter-spacing:0.3px; }
 
-        /* JUSTIFICATION */
-        .justification {
-            display: none;
-            margin-top: 20px; padding: 18px 22px;
-            background: linear-gradient(to right, var(--amarillo-pale), var(--amarillo-ultra));
-            border-left: 4px solid var(--amarillo);
-            border-radius: 10px;
-            animation: fadeUp 0.4s ease;
-            font-size: 1em; color: var(--text-soft); line-height: 1.6;
+        /* ── PROGRESO ── */
+        .progreso-wrap { margin-bottom:28px; }
+        .progreso-info {
+            display:flex; justify-content:space-between;
+            font-size:0.82em; color:var(--texto-soft);
+            font-weight:700; margin-bottom:7px; letter-spacing:0.3px;
         }
-        .justification.show { display: block; }
-        .justification strong { color: var(--naranja-mid); }
+        .barra-fondo {
+            width:100%; height:8px;
+            background:var(--azul-pale);
+            border-radius:10px; overflow:hidden;
+            border:1px solid var(--borde-pale);
+        }
+        .barra-relleno {
+            height:100%;
+            background: linear-gradient(90deg, var(--azul), var(--verde-mid));
+            width:0%; transition:width 0.45s ease;
+            border-radius:10px;
+        }
 
-        /* NAV */
-        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; gap: 14px; }
+        /* ── PREGUNTA ── */
+        .pregunta-card { display:none; animation:deslizar 0.3s ease; }
+        .pregunta-card.active { display:block; }
+        @keyframes deslizar {
+            from { opacity:0; transform:translateX(18px); }
+            to   { opacity:1; transform:translateX(0); }
+        }
+        .num-pregunta {
+            display:inline-flex; align-items:center; gap:6px;
+            background: linear-gradient(135deg, var(--azul), var(--azul-mid));
+            color:#fff;
+            font-weight:700; font-size:0.8em;
+            letter-spacing:1.5px; text-transform:uppercase;
+            padding:5px 15px; border-radius:50px; margin-bottom:14px;
+        }
+        .texto-pregunta {
+            font-size:1.18em; color:var(--texto);
+            margin-bottom:20px; line-height:1.68; font-weight:500;
+        }
+        .opciones { display:flex; flex-direction:column; gap:10px; }
+        .opcion {
+            padding:14px 20px;
+            border:2px solid var(--borde-pale);
+            border-radius:11px; cursor:pointer;
+            transition:all 0.22s ease;
+            font-size:1.03em; background:var(--blanco);
+            color:var(--texto);
+            display:flex; align-items:center; gap:12px;
+        }
+        .letra-opcion {
+            width:28px; height:28px; min-width:28px;
+            border-radius:50%;
+            background:var(--azul-ultra);
+            border:2px solid var(--borde);
+            color:var(--azul);
+            font-weight:800; font-size:0.82em;
+            display:flex; align-items:center; justify-content:center;
+            transition:all 0.22s ease;
+        }
+        .opcion:hover {
+            border-color:var(--azul-mid);
+            background:var(--azul-pale);
+            transform:translateX(5px);
+            box-shadow:0 4px 14px var(--sombra);
+        }
+        .opcion:hover .letra-opcion { background:var(--azul); color:#fff; border-color:var(--azul); }
+        .opcion.seleccionada { border-color:var(--azul-mid); background:var(--azul-pale); }
+        .opcion.correcta  { border-color:var(--verde); background:var(--verde-pale); }
+        .opcion.correcta .letra-opcion  { background:var(--verde); color:#fff; border-color:var(--verde); }
+        .opcion.incorrecta { border-color:var(--rojo); background:var(--rojo-pale); }
+        .opcion.incorrecta .letra-opcion { background:var(--rojo); color:#fff; border-color:var(--rojo); }
+        .opcion.bloqueada { cursor:not-allowed; }
+        .opcion.bloqueada:hover { transform:none; box-shadow:none; }
+
+        /* ── JUSTIFICACIÓN ── */
+        .justificacion {
+            display:none;
+            margin-top:18px; padding:16px 20px;
+            background: linear-gradient(to right, var(--azul-pale), var(--azul-ultra));
+            border-left:4px solid var(--azul-mid);
+            border-radius:10px;
+            animation:aparecer 0.35s ease;
+            font-size:0.97em; color:var(--texto-soft); line-height:1.65;
+        }
+        .justificacion.visible { display:block; }
+        .justificacion strong { color:var(--azul); }
+
+        /* ── NAVEGACIÓN ── */
+        .nav-botones { display:flex; justify-content:space-between; margin-top:28px; gap:14px; }
         .btn {
-            padding: 14px 32px; border: none; border-radius: 10px;
-            font-size: 1em; cursor: pointer;
-            transition: all 0.25s ease; font-weight: 700;
-            font-family: 'Nunito', sans-serif;
+            padding:13px 30px; border:none; border-radius:10px;
+            font-size:0.97em; cursor:pointer;
+            transition:all 0.22s ease; font-weight:700;
+            font-family:'DM Sans',sans-serif;
         }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--amarillo), var(--naranja));
-            color: var(--text);
-            box-shadow: 0 4px 16px rgba(247,219,38,0.5);
-            border: 2px solid var(--amarillo-dark);
+        .btn-primario {
+            background: linear-gradient(135deg, var(--azul), var(--azul-mid));
+            color:#fff;
+            box-shadow:0 4px 16px rgba(26,109,181,0.4);
         }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(245,166,35,0.45);
-            background: linear-gradient(135deg, var(--naranja), var(--naranja-mid));
-            color: white;
+        .btn-primario:hover {
+            transform:translateY(-2px);
+            box-shadow:0 8px 24px rgba(26,109,181,0.5);
+            background: linear-gradient(135deg, var(--azul-mid), var(--azul-light));
         }
-        .btn-secondary {
-            background: var(--warm-white); color: var(--text-soft); border: 2px solid var(--border-pale);
+        .btn-secundario {
+            background:var(--blanco); color:var(--texto-soft);
+            border:2px solid var(--borde-pale);
         }
-        .btn-secondary:hover {
-            background: var(--amarillo-pale); border-color: var(--border); color: var(--text-mid);
-        }
-        .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+        .btn-secundario:hover { background:var(--azul-pale); border-color:var(--borde); color:var(--texto-mid); }
+        .btn:disabled { opacity:0.38; cursor:not-allowed; transform:none !important; box-shadow:none !important; }
 
-        /* RESULTS */
-        .results { display: none; text-align: center; }
-        .results.show { display: block; }
-        .results h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.9em; color: var(--text); margin-bottom: 8px;
+        /* ── RESULTADOS ── */
+        .resultados { display:none; text-align:center; }
+        .resultados.visible { display:block; }
+        .resultados h2 {
+            font-family:'DM Serif Display',serif;
+            font-size:1.85em; color:var(--texto); margin-bottom:8px;
         }
-        .score-circle {
-            width: 200px; height: 200px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--amarillo), var(--naranja));
-            border: 5px solid var(--amarillo-pale);
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            margin: 28px auto 14px;
-            box-shadow: 0 12px 40px rgba(247,219,38,0.5), 0 0 0 10px rgba(247,219,38,0.15);
+        .circulo-nota {
+            width:190px; height:190px; border-radius:50%;
+            background: linear-gradient(135deg, var(--azul) 0%, var(--verde-mid) 100%);
+            border:5px solid var(--azul-pale);
+            display:flex; flex-direction:column;
+            justify-content:center; align-items:center;
+            margin:26px auto 12px;
+            box-shadow:0 14px 44px rgba(26,109,181,0.4), 0 0 0 10px rgba(26,109,181,0.08);
         }
-        .nota-label { font-size: 0.82em; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px; color: var(--text); opacity: 0.75; }
-        .nota-valor { font-family: 'Playfair Display', serif; font-size: 4em; font-weight: 900; line-height: 1; color: var(--text); }
-        .nota-total { font-size: 1em; color: var(--text-mid); }
-        .score-detail {
-            display: inline-block; background: var(--warm-white);
-            border: 2px solid var(--border-pale); border-radius: 12px;
-            padding: 10px 28px; margin-bottom: 20px;
-            font-size: 1em; color: var(--text-soft);
+        .nota-label { font-size:0.8em; letter-spacing:2px; text-transform:uppercase; margin-bottom:2px; color:#fff; opacity:0.8; }
+        .nota-valor { font-family:'DM Serif Display',serif; font-size:3.8em; font-weight:900; line-height:1; color:#fff; }
+        .nota-total { font-size:1em; color:#fff; opacity:0.75; }
+        .detalle-puntaje {
+            display:inline-block; background:var(--blanco);
+            border:2px solid var(--borde-pale); border-radius:12px;
+            padding:10px 26px; margin-bottom:20px;
+            font-size:1em; color:var(--texto-soft);
         }
-        .score-detail span { font-weight: 800; color: var(--naranja-mid); }
-        .grade-bar-container { width: 100%; max-width: 480px; margin: 0 auto 20px; }
-        .grade-bar-bg { width: 100%; height: 16px; background: var(--amarillo-pale); border-radius: 10px; overflow: hidden; margin-bottom: 6px; border: 1px solid var(--border-pale); }
-        .grade-bar-fill { height: 100%; border-radius: 10px; transition: width 1s ease; background: linear-gradient(90deg, var(--amarillo), var(--naranja)); }
-        .grade-bar-labels { display: flex; justify-content: space-between; font-size: 0.78em; color: #cca840; padding: 0 2px; }
-        .grade-badge {
-            display: inline-block; padding: 8px 24px; border-radius: 50px;
-            font-weight: 800; font-size: 1em; margin-bottom: 16px; letter-spacing: 0.5px;
+        .detalle-puntaje span { font-weight:800; color:var(--azul-mid); }
+        .barra-grade-cont { width:100%; max-width:460px; margin:0 auto 18px; }
+        .barra-grade-fondo { width:100%; height:14px; background:var(--azul-pale); border-radius:10px; overflow:hidden; margin-bottom:5px; border:1px solid var(--borde-pale); }
+        .barra-grade-relleno { height:100%; border-radius:10px; transition:width 1s ease; background:linear-gradient(90deg, var(--azul), var(--verde-mid)); }
+        .barra-grade-labels { display:flex; justify-content:space-between; font-size:0.77em; color:#7fb3d6; padding:0 2px; }
+        .insignia {
+            display:inline-block; padding:8px 22px; border-radius:50px;
+            font-weight:800; font-size:1em; margin-bottom:16px; letter-spacing:0.4px;
         }
-        .badge-excelente   { background: #e6f7ee; color: #1a7a4a; border: 2px solid #2ecc71; }
-        .badge-bueno       { background: #e8f4fd; color: #1565c0; border: 2px solid #3498db; }
-        .badge-regular     { background: var(--amarillo-pale); color: var(--cafe-claro); border: 2px solid var(--amarillo-dark); }
-        .badge-desaprobado { background: #fdecea; color: #c0392b; border: 2px solid #e74c3c; }
-        .results p.result-msg {
-            font-size: 1.1em; color: var(--text-soft); margin-bottom: 24px;
-            line-height: 1.7; max-width: 500px; margin-left: auto; margin-right: auto;
+        .insignia-sobresaliente { background:#e6f7ee; color:#1a7a4a; border:2px solid #2ecc71; }
+        .insignia-bueno         { background:var(--azul-pale); color:var(--azul); border:2px solid var(--azul-mid); }
+        .insignia-regular       { background:#fff8e1; color:#c77e00; border:2px solid #f0b400; }
+        .insignia-desaprobado   { background:var(--rojo-pale); color:var(--rojo); border:2px solid #e74c3c; }
+        .resultados p.msg-resultado {
+            font-size:1.08em; color:var(--texto-soft); margin-bottom:22px;
+            line-height:1.7; max-width:500px; margin-left:auto; margin-right:auto;
         }
-        .results-motto {
-            background: linear-gradient(135deg, var(--amarillo), var(--naranja));
-            color: var(--text);
-            padding: 14px 32px; border-radius: 50px;
-            font-weight: 800; font-size: 1.05em;
-            display: inline-block; margin-top: 8px;
-            letter-spacing: 1.5px; text-transform: uppercase;
-            box-shadow: 0 4px 16px rgba(247,219,38,0.4);
-            border: 2px solid var(--amarillo-dark);
+        .lema-resultado {
+            background: linear-gradient(135deg, var(--azul), var(--verde-mid));
+            color:#fff;
+            padding:13px 30px; border-radius:50px;
+            font-weight:700; font-size:1em;
+            display:inline-block; margin-top:8px;
+            letter-spacing:1.5px; text-transform:uppercase;
+            box-shadow:0 4px 16px rgba(26,109,181,0.35);
         }
 
-        @media (max-width: 600px) {
-            .inner { padding: 24px 20px; }
-            .academy-header { padding: 24px 20px; }
-            .header h1 { font-size: 1.5em; }
-            .question-text { font-size: 1.05em; }
-            .nav-buttons { flex-direction: column; }
-            .score-circle { width: 160px; height: 160px; }
-            .nota-valor { font-size: 3.2em; }
+        @media (max-width:600px) {
+            .inner { padding:22px 18px; }
+            .academia-header { padding:22px 18px; }
+            .encabezado h1 { font-size:1.45em; }
+            .texto-pregunta { font-size:1.04em; }
+            .nav-botones { flex-direction:column; }
+            .circulo-nota { width:150px; height:150px; }
+            .nota-valor { font-size:3em; }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="academy-header">
+
+    <!-- CABECERA CON LOGO -->
+    <div class="academia-header">
         <div class="logo-container">
             <img src="logo_SOFIA-Photoroom.png" alt="Logo Academia Sofía">
         </div>
-        <div class="teal-divider"></div>
+        <div class="divisor-cabecera"></div>
     </div>
+
     <div class="inner">
-        <div class="header">
-            <h1>🏛️ Examen de <span>Historia del Perú</span></h1>
-            <p>Ciclo Repaso · 31 Preguntas</p>
+        <div class="encabezado">
+            <h1>🫀 Examen de <span>Anatomía</span></h1>
+            <p>Sistema Cardiovascular &amp; Digestivo · 23 Preguntas</p>
         </div>
-        <div class="progress-wrapper">
-            <div class="progress-info">
-                <span id="progressText">Pregunta 1 de 31</span>
-                <span id="progressPct">0%</span>
+
+        <!-- BARRA DE PROGRESO -->
+        <div class="progreso-wrap">
+            <div class="progreso-info">
+                <span id="textoProgreso">Pregunta 1 de 23</span>
+                <span id="pctProgreso">0%</span>
             </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+            <div class="barra-fondo">
+                <div class="barra-relleno" id="barraRelleno"></div>
             </div>
         </div>
+
+        <!-- CONTENEDOR DE PREGUNTAS -->
         <div id="quizContainer"></div>
-        <div class="results" id="results">
+
+        <!-- RESULTADOS -->
+        <div class="resultados" id="resultados">
             <h2>🎉 ¡Examen Completado!</h2>
-            <div class="score-circle">
+            <div class="circulo-nota">
                 <div class="nota-label">Tu nota</div>
-                <div class="nota-valor" id="finalNota">0</div>
+                <div class="nota-valor" id="notaFinal">0</div>
                 <div class="nota-total">/ 20</div>
             </div>
-            <div class="score-detail">
-                Respuestas correctas: <span id="finalScore">0</span> de <span id="totalQuestions">31</span>
+            <div class="detalle-puntaje">
+                Respuestas correctas: <span id="puntajeFinal">0</span> de <span id="totalPreguntas">23</span>
             </div>
-            <div class="grade-bar-container">
-                <div class="grade-bar-bg">
-                    <div class="grade-bar-fill" id="gradeBarFill" style="width:0%"></div>
+            <div class="barra-grade-cont">
+                <div class="barra-grade-fondo">
+                    <div class="barra-grade-relleno" id="barraGrade" style="width:0%"></div>
                 </div>
-                <div class="grade-bar-labels"><span>0</span><span>5</span><span>10</span><span>15</span><span>20</span></div>
+                <div class="barra-grade-labels"><span>0</span><span>5</span><span>10</span><span>15</span><span>20</span></div>
             </div>
-            <div id="gradeBadge" class="grade-badge"></div>
-            <p class="result-msg" id="resultMessage"></p>
-            <div class="results-motto">— Tutor Franklin —</div>
+            <div id="insigniaBadge" class="insignia"></div>
+            <p class="msg-resultado" id="mensajeResultado"></p>
+            <div class="lema-resultado">— Tutor Franklin —</div>
             <br><br>
-            <button class="btn btn-primary" onclick="restartQuiz()">🔄 Reintentar Examen</button>
+            <button class="btn btn-primario" onclick="reiniciar()">🔄 Reintentar Examen</button>
         </div>
-        <div class="nav-buttons" id="navButtons">
-            <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">← Anterior</button>
-            <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Siguiente →</button>
+
+        <!-- BOTONES -->
+        <div class="nav-botones" id="navBotones">
+            <button class="btn btn-secundario" id="btnAnterior" onclick="anterior()">← Anterior</button>
+            <button class="btn btn-primario"   id="btnSiguiente" onclick="siguiente()">Siguiente →</button>
         </div>
     </div>
 </div>
+
 <script>
-const questions = [
+const preguntas = [
+    // ─── CARDIOLOGÍA ───────────────────────────────────────────────
     {
-        question: "Según el drama incaico, ¿quién capturó a Ollanta?",
-        options: ["Túpac Yupanqui", "Orcco Huarancca", "Piqui Chaki", "Rumi Ñahui", "Inca Pachacutec"],
-        correct: 3,
-        justification: "En el drama quechua Ollantay, el general Rumi Ñahui es quien captura a Ollanta mediante una estratagema cuando este se encontraba dormido."
+        pregunta: "Una persona es herida con un puñal que atravesó su corazón. Señale el orden correcto de las estructuras histológicas atravesadas:",
+        opciones: [
+            "Miocardio – endocardio – epicardio – pericardio",
+            "Endocardio – epicardio – miocardio – pericardio",
+            "Epicardio – endocardio – miocardio – pericardio",
+            "Pericardio – epicardio – miocardio – endocardio",
+            "Epicardio – miocardio – endocardio – pericardio"
+        ],
+        correcta: 3,
+        justificacion: "El puñal ingresa desde el exterior hacia el interior: Pericardio → Epicardio → Miocardio → Endocardio. Este es el orden de las capas del corazón de afuera hacia adentro."
     },
     {
-        question: "Reconocido como inca a la muerte de Atahualpa, encabezó en el siglo XVI la primera gran rebelión contra el poder español:",
-        options: ["Huáscar", "Sayri Tupac", "Manco Inca", "Pachacútec", "Túpac Amaru"],
-        correct: 2,
-        justification: "Manco Inca, coronado por los españoles, lideró en 1536 la gran rebelión indígena que sitió Cusco y Lima, siendo la primera gran resistencia organizada contra la dominación española en el siglo XVI."
+        pregunta: "Con respecto al sistema circulatorio, la irrigación del corazón la realiza:",
+        opciones: ["Arteria aorta", "Arteria pulmonar", "Arteria coronaria", "Vena cava", "Vena coronaria"],
+        correcta: 2,
+        justificacion: "Las arterias coronarias derecha e izquierda nacen de la aorta ascendente y son las encargadas exclusivas de nutrir al músculo cardíaco (miocardio)."
     },
     {
-        question: "Eran los municipios de la época Virreinal, estaban a cargo de un alcalde y regidores:",
-        options: ["Las audiencias", "Los cabildos", "Los corregimientos", "Las intendencias", "Las municipalidades"],
-        correct: 1,
-        justification: "Los cabildos fueron las instituciones de gobierno local durante el Virreinato, equivalentes a los municipios actuales. Estaban presididos por un alcalde y compuestos por regidores elegidos entre los vecinos principales."
+        pregunta: "Capa del corazón responsable de la sístole y diástole:",
+        opciones: ["Endocardio", "Miocardio", "Epicardio", "Pericardio", "Pleura"],
+        correcta: 1,
+        justificacion: "El miocardio es la capa muscular del corazón. Su contracción genera la sístole (eyección de sangre) y su relajación produce la diástole (llenado ventricular)."
     },
     {
-        question: "Pueblo precerámico, ubicado en el desierto de Cupisnique, Lambayeque, creador de una industria lítica caracterizada por la elaboración de puntas de flecha bifaciales:",
-        options: ["Chavín", "Paracas", "Guitarrero", "Toquepala", "Paijan"],
-        correct: 4,
-        justification: "La cultura Paijanense es una de las más antiguas de la costa norte peruana, reconocida por sus puntas bifaciales de gran tamaño denominadas 'puntas de Paiján', halladas en el desierto de Cupisnique."
+        pregunta: "Se considera como el marcapaso accesorio del corazón:",
+        opciones: ["Nodo sinusal", "Haz de Hiss", "Nodo auriculoventricular", "Fibras de Purkinje", "Fascículos internodales"],
+        correcta: 2,
+        justificacion: "El nodo AV (auriculoventricular) recibe el impulso del nodo sinusal y lo retransmite a los ventrículos. Actúa como marcapaso secundario o de respaldo cuando el nodo sinusal falla."
     },
     {
-        question: "Su religión tuvo como dios principal a la divinidad llamada AIAPAEC; y otro secundario llamado NI o dios del mar; el jaguar simbolizó la fuerza y el poder. Se refiere a la cultura:",
-        options: ["Nasca", "Chavín", "Paracas", "Vicus", "Moche"],
-        correct: 4,
-        justification: "La cultura Moche (Mochica) tuvo como deidad principal a Aiapaec o 'El Degollador'. Ni era el dios del mar, y el jaguar era símbolo del poder y la fuerza en su iconografía."
+        pregunta: "Las arterias se originan en:",
+        opciones: ["Las aurículas", "Las arteriolas", "Los tejidos", "Los ventrículos", "Los capilares"],
+        correcta: 3,
+        justificacion: "La arteria aorta nace del ventrículo izquierdo (circulación sistémica) y la arteria pulmonar del ventrículo derecho (circulación pulmonar)."
     },
     {
-        question: "Las fuerzas rebeldes de Túpac Amaru II derrotaron al ejército español en noviembre de 1780 en:",
-        options: ["Tinta", "Tungasuca", "Checacupe", "Sangarará", "Surimana"],
-        correct: 3,
-        justification: "La Batalla de Sangarará (18 de noviembre de 1780) fue la victoria más importante de las fuerzas de Túpac Amaru II, donde derrotaron al ejército realista encabezado por el corregidor Tiburcio Landa."
+        pregunta: "Las venas pulmonares provistas de sangre oxigenada desembocan en:",
+        opciones: ["El ventrículo izquierdo", "El ventrículo derecho", "La aurícula izquierda", "La aurícula derecha", "El cayado de la aorta"],
+        correcta: 2,
+        justificacion: "Las cuatro venas pulmonares regresan sangre rica en O₂ desde los pulmones hacia la aurícula izquierda, desde donde pasa al ventrículo izquierdo para ser bombeada al cuerpo."
     },
     {
-        question: "El decreto que establece el Mar Territorial Peruano de las 200 millas se dio en el gobierno de:",
-        options: ["Fernando Belaunde Terry", "General Manuel A. Odría", "José Luis Bustamante y Rivero", "1er Gobierno de Manuel Prado y Ugarteche", "2do Gobierno de Manuel Prado y Ugarteche"],
-        correct: 2,
-        justification: "El Decreto Supremo del 1 de agosto de 1947, promulgado durante el gobierno de Bustamante y Rivero, estableció la soberanía del Perú sobre las 200 millas marinas, siendo un hito en el derecho marítimo internacional."
+        pregunta: "Relacione los vasos sanguíneos con las cavidades cardíacas:\n1. Arteria pulmonar   2. Vena coronaria\na) Aurícula derecha   b) Aurícula izquierda   c) Ventrículo derecho   d) Ventrículo izquierdo",
+        opciones: ["1b, 2c", "1c, 2b", "1a, 2d", "1c, 2a", "1d, 2b"],
+        correcta: 3,
+        justificacion: "La arteria pulmonar sale del ventrículo derecho (c) llevando sangre desoxigenada a los pulmones. Las venas coronarias drenan en la aurícula derecha (a) a través del seno coronario."
     },
     {
-        question: "La reforma agraria que modificó el régimen de tenencia de la tierra fue dada por ley del:",
-        options: ["14 de junio de 1969", "14 de julio de 1969", "24 de julio de 1969", "28 de julio de 1969", "24 de junio de 1969"],
-        correct: 4,
-        justification: "El Decreto Ley N° 17716, promulgado el 24 de junio de 1969 por el General Juan Velasco Alvarado, estableció la Reforma Agraria que transformó la estructura de propiedad de la tierra en el Perú."
+        pregunta: "¿Qué vaso sale del ventrículo izquierdo y lleva sangre oxigenada hacia el cuerpo?",
+        opciones: ["Arteria pulmonar", "Vena pulmonar", "Arteria aorta", "Vena cava superior", "Arteria coronaria"],
+        correcta: 2,
+        justificacion: "La arteria aorta es el vaso más importante del cuerpo. Nace del ventrículo izquierdo y distribuye sangre oxigenada a todos los órganos y tejidos de la circulación sistémica."
     },
     {
-        question: "La teoría autoctonista que explica el origen de las 'Altas Culturas' peruanas está defendida por:",
-        options: ["Julio C. Tello Rojas", "Max Uhle", "Luis Guillermo Lumbreras", "Paul Rivet", "Federico Kauffman Doig"],
-        correct: 0,
-        justification: "Julio C. Tello, padre de la arqueología peruana, sostuvo que las altas culturas andinas tuvieron origen propio derivando de culturas amazónicas locales, sin influencia exterior."
+        pregunta: "¿Cuál es el volumen sistólico (volumen latido) normal de una persona adulta en reposo?",
+        opciones: ["130 mL", "180 mL", "30 mL", "70 mL", "50 mL"],
+        correcta: 3,
+        justificacion: "El volumen sistólico normal en reposo es aproximadamente 70 mL por latido. Multiplicado por la frecuencia cardíaca (~70 lpm) da el gasto cardíaco de ~5 L/min."
     },
     {
-        question: "El período que desarrolló el primer Imperio Pan-Andino, alrededor del año 1100 d.C., corresponde al:",
-        options: ["Intermedio Temprano", "Horizonte Tardío", "Intermedio Tardío", "Horizonte Medio", "Horizonte Temprano"],
-        correct: 3,
-        justification: "El Horizonte Medio (600–1100 d.C.) corresponde al apogeo de la cultura Wari, que consolidó el primer Estado panandino dominando a numerosos pueblos mediante centros administrativos y caminos."
+        pregunta: "¿Cuál de las siguientes estructuras se conoce como el marcapaso principal o primario del corazón?",
+        opciones: ["Nodo auriculoventricular", "Haz de Hiss", "Nodo sinusal", "Fibras de Purkinje", "Fascículos internodales"],
+        correcta: 2,
+        justificacion: "El nodo sinoauricular (SA o sinusal), ubicado en la aurícula derecha, genera el impulso eléctrico primario que marca el ritmo cardíaco normal de 60–100 lpm en reposo."
     },
     {
-        question: "El conflicto militar del Alto Cenepa entre Perú y Ecuador llegó a su fin con:",
-        options: ["La firma del Protocolo de Paz, Amistad y Límites del 29-02-1942", "La Declaración de Paz de Itamaraty del 17-02-1995", "El Tratado de Río Blanco-Velarde del 08-09-1909", "El Tratado de Paz de Ancón del 20-10-1883", "El Tratado Polo Bustamante de 1909"],
-        correct: 1,
-        justification: "El conflicto del Cenepa (enero-febrero 1995) concluyó con la Declaración de Paz de Itamaraty, firmada el 17 de febrero de 1995 en Brasil, estableciendo el cese al fuego y el inicio de negociaciones definitivas."
+        pregunta: "Marque verdadero (V) o falso (F):\n1. El miocardio es la capa que permite las contracciones del corazón.\n2. La válvula bicúspide se ubica entre la aurícula y el ventrículo derecho.\n3. Las arterias se originan en las aurículas.",
+        opciones: ["VVV", "FVF", "VFF", "FFF", "FVF"],
+        correcta: 2,
+        justificacion: "Solo (1) es verdadera: el miocardio contrae el corazón. (2) es falsa: la válvula bicúspide (mitral) está en el lado izquierdo. (3) es falsa: las arterias salen de los ventrículos."
     },
     {
-        question: "Las provincias de Grau, Bolognesi y Castilla pertenecen respectivamente a los departamentos de:",
-        options: ["Piura, Tacna, Loreto", "Junín, Moquegua, Lambayeque", "Apurímac, Áncash, Arequipa", "Tumbes, Huánuco, San Martín", "La Libertad, Amazonas, Cajamarca"],
-        correct: 2,
-        justification: "La provincia de Grau pertenece al departamento de Apurímac; Bolognesi, a Áncash; y Castilla, a Arequipa."
+        pregunta: "Las venas en general transportan sangre hipoxigenada, excepto las venas pulmonares que conducen sangre con:",
+        opciones: ["CO₂", "Sangre desoxigenada", "O₂ — son la excepción venosa", "Quilo", "Plasma únicamente"],
+        correcta: 2,
+        justificacion: "Las venas pulmonares son la única excepción: regresan sangre oxigenada (con O₂) desde los pulmones hacia la aurícula izquierda, completando la circulación pulmonar."
+    },
+
+    // ─── SISTEMA DIGESTIVO ─────────────────────────────────────────
+    {
+        pregunta: "¿Dónde se encuentra la válvula ileocecal?",
+        opciones: [
+            "En la unión entre el esófago y el estómago",
+            "En la unión entre el estómago con el duodeno",
+            "En la desembocadura del conducto colédoco",
+            "En la desembocadura de la porción final del intestino delgado",
+            "En la porción final del recto"
+        ],
+        correcta: 3,
+        justificacion: "La válvula ileocecal conecta el íleon (último segmento del intestino delgado) con el ciego (inicio del intestino grueso), impidiendo el reflujo del contenido intestinal."
     },
     {
-        question: "Los Paracas le ganaron tierras al desierto construyendo:",
-        options: ["Acueductos", "Andenes", "Hoyas o Campos hundidos", "Desalitrando el terreno", "Fertilizando el terreno"],
-        correct: 2,
-        justification: "Los Paracas desarrollaron las 'hoyas' o 'mahamaes', campos hundidos que aprovechaban la humedad subterránea del subsuelo desértico para cultivar, siendo una destacada innovación agrícola."
+        pregunta: "La bilis almacenada en la vesícula biliar facilita la degradación de los lípidos a través de la:",
+        opciones: ["Lipasa gástrica", "Lipasa pancreática", "Nucleasa pancreática", "Elastasa", "Amilasa salival"],
+        correcta: 1,
+        justificacion: "La bilis emulsifica las grasas dividiéndolas en pequeñas gotitas, aumentando la superficie de contacto y facilitando así la acción de la lipasa pancreática sobre los lípidos."
     },
     {
-        question: "Según la Capitulación de Toledo, Hernando de Luque fue designado:",
-        options: ["Protector de naturales", "Conquistador", "Capitán general", "Gobernador", "Alguacil mayor"],
-        correct: 0,
-        justification: "En la Capitulación de Toledo (1529), Hernando de Luque —socio financiero de Pizarro y Almagro— recibió el título de 'Protector de naturales' y Obispo de Tumbes."
+        pregunta: "Escoja las enzimas que degradan almidón, proteínas y lípidos respectivamente:",
+        opciones: [
+            "Amilasa, pepsina y lipasa",
+            "Tripsina, amilasa y lipasa",
+            "Maltasa, pepsina y sacarasa",
+            "Amilasa, pepsina y quimiotripsina",
+            "Peptidasa, tripsina y lipasa"
+        ],
+        correcta: 0,
+        justificacion: "Amilasa hidroliza el almidón (polisacárido) → maltosa. Pepsina degrada proteínas en el estómago. Lipasa desdobla los triglicéridos (lípidos) en ácidos grasos y glicerol."
     },
     {
-        question: "Las tierras en el Incanato se dividían en:",
-        options: ["Tierras del Inca, del ayllu y del estado", "Tierras del estado, de las huacas y del ayllu", "Tierras del Sol, del Inca y del ayllu", "Tierras del Inca y del rey sol", "Tierras del Inca, del estado, de las huacas y del ayllu"],
-        correct: 2,
-        justification: "En el Tahuantinsuyo las tierras se dividían en tres grupos: las del Sol (culto religioso), las del Inca (Estado y ejército) y las del ayllu (comunidad)."
+        pregunta: "¿Cuál de las siguientes NO constituye función de la saliva en el organismo humano?",
+        opciones: [
+            "Conservar la humedad de la boca",
+            "Actúa como lubricante en la deglución",
+            "Actúa como solvente de moléculas",
+            "Inicia la digestión de almidón (ptialina)",
+            "Inicia la digestión de proteínas"
+        ],
+        correcta: 4,
+        justificacion: "La saliva contiene amilasa salival (ptialina) que digiere almidón, pero NO contiene enzimas proteolíticas. La digestión de proteínas comienza en el estómago con la pepsina."
     },
     {
-        question: "La Junta Militar que presidía Manuel Odría dictó una ley para perseguir a los apristas y comunistas; esta ley fue:",
-        options: ["Ley de Seguridad Interior de la República", "Ley de Seguridad de la República", "Ley de la República", "Ley del Interior", "Ley de Seguridad"],
-        correct: 0,
-        justification: "La Ley de Seguridad Interior de la República (1948), promulgada por Odría, fue el instrumento legal para perseguir y encarcelar a militantes apristas y comunistas, restringiendo las libertades políticas."
+        pregunta: "El sistema digestivo, en forma correlativa, está formado por:",
+        opciones: [
+            "Boca, esófago, faringe, estómago, I.delgado y grueso",
+            "Boca, faringe, estómago, esófago, I.delgado y grueso",
+            "Boca, estómago, faringe, esófago, I.delgado y grueso",
+            "Boca, estómago, esófago, faringe, I.delgado y grueso",
+            "Boca, faringe, esófago, estómago, I.delgado y grueso"
+        ],
+        correcta: 4,
+        justificacion: "El orden correcto del tubo digestivo es: Boca → Faringe → Esófago → Estómago → Intestino delgado → Intestino grueso → Recto → Ano."
     },
     {
-        question: "El ferrocarril Lima-Callao, señal de prosperidad generada por la venta del guano, se realizó durante el gobierno de:",
-        options: ["Primer Gobierno de Ramón Castilla (1845–1851)", "Gobierno de José Echenique (1851–1854)", "Segundo Gobierno de Ramón Castilla (1855–1862)", "Gobierno de José Balta (1868–1872)", "Gobierno de Manuel Pardo y Lavalle (1872–1876)"],
-        correct: 0,
-        justification: "El ferrocarril Lima-Callao, inaugurado el 17 de mayo de 1851, fue el primero de América del Sur y se construyó durante el primer gobierno de Ramón Castilla, financiado con ingresos del guano."
+        pregunta: "¿En qué estructura del aparato digestivo se produce principalmente la absorción de nutrientes?",
+        opciones: [
+            "Tejido conjuntivo elástico del intestino delgado",
+            "Músculo liso del intestino delgado",
+            "Capa intermedia del intestino delgado",
+            "Intestino delgado y grueso",
+            "Microvellosidades del intestino delgado"
+        ],
+        correcta: 4,
+        justificacion: "Las microvellosidades del intestino delgado (borde en cepillo) aumentan enormemente la superficie de absorción (~200 m²) siendo el sitio principal de absorción de nutrientes hacia la sangre y linfa."
     },
     {
-        question: "Las 'Cabezas Clavas' son esculturas de piedra insertadas en la pared del templo. Estas pertenecen a:",
-        options: ["Chavín (Horizonte Temprano)", "Nasca (Fin Horizonte Temprano)", "Paracas (Fin Horizonte Temprano)", "Pukara (Intermedio Temprano)", "Vicus (Intermedio Temprano)"],
-        correct: 0,
-        justification: "Las cabezas clavas son esculturas en forma de cabezas humanas o felinas que adornan los muros del Templo de Chavín de Huántar, símbolo emblemático del Horizonte Temprano."
+        pregunta: "Relacione las capas del tubo digestivo con sus estructuras:\n1. Mucosa   2. Submucosa   3. Muscular   4. Serosa\na) Muscularis mucosae   b) Plexo de Auerbach   c) Plexo de Meissner",
+        opciones: ["1a, 2b, 3c", "2b, 1c, 3a", "2a, 3b, 4c", "1a, 2c, 3b", "2c, 3a, 4b"],
+        correcta: 3,
+        justificacion: "Mucosa contiene la muscularis mucosae (a). En la Submucosa se ubica el Plexo de Meissner (c) que regula la secreción. En la capa Muscular está el Plexo de Auerbach (b) que controla la motilidad."
     },
     {
-        question: "Elaboró el Primer Presupuesto Estatal para el período 1845–1846:",
-        options: ["Nicolás de Piérola", "Miguel Iglesias", "Simón Bolívar", "Ramón Castilla", "Mariano Ignacio Prado"],
-        correct: 3,
-        justification: "Ramón Castilla, durante su primer gobierno (1845–1851), elaboró y promulgó el primer presupuesto estatal de la historia republicana peruana, modernizando la administración fiscal."
+        pregunta: "¿En cuál de los siguientes órganos los alimentos son agitados y mezclados con jugos gástricos hasta convertirse en quimo ácido?",
+        opciones: ["Duodeno", "Íleon", "Estómago", "Yeyuno", "Intestino grueso"],
+        correcta: 2,
+        justificacion: "El estómago mezcla los alimentos con ácido clorhídrico (HCl) y pepsinógeno mediante movimientos peristálticos, transformando el bolo alimenticio en quimo ácido (pH 1.5–3.5)."
     },
     {
-        question: "Presidió la Segunda gran rebelión del Cusco:",
-        options: ["Hipólito Unanue", "Francisco de Zela", "Juan Pablo Vizcardo y Guzmán", "Mateo Pumacahua", "José Baquíjano y Carrillo"],
-        correct: 3,
-        justification: "Mateo García Pumacahua encabezó junto con los hermanos Angulo la rebelión del Cusco de 1814–1815, considerada la segunda gran rebelión precursora de la independencia del Perú."
+        pregunta: "La formación del 'Quilo' ocurre por movimientos peristálticos en el:",
+        opciones: ["Intestino delgado", "Intestino grueso", "Estómago", "Esófago", "Recto"],
+        correcta: 0,
+        justificacion: "El quilo es una emulsión blanquecina de grasas absorbidas que se forma en el intestino delgado (especialmente yeyuno-íleon) y pasa a los vasos linfáticos quilíferos (vasos de Lacteales)."
     },
     {
-        question: "Durante la época colonial, las mitas más famosas fueron:",
-        options: ["Lima y Arequipa", "Huancavelica y Potosí", "Cusco y Arequipa", "Potosí y Arequipa", "Lima y Huancavelica"],
-        correct: 1,
-        justification: "Las mitas mineras de Huancavelica (mercurio) y Potosí (plata) fueron las más importantes y devastadoras del Virreinato, empleando a miles de indígenas en condiciones extremas."
+        pregunta: "Relacione las glándulas salivales con sus respectivos conductos excretores:\nI. Parótidas   II. Submaxilares   III. Sublinguales\na) Rivinus   b) Wharton   c) Stenon",
+        opciones: ["Ia, IIb, IIIc", "Ib, IIa, IIIc", "Ic, IIb, IIIa", "Ia, IIc, IIIb", "Ib, IIc, IIIa"],
+        correcta: 2,
+        justificacion: "Cada glándula salival tiene su conducto: Parótidas → Stenon (c), desemboca a nivel del 2do molar superior. Submaxilares → Wharton (b), bajo la lengua. Sublinguales → Rivinus (a), conductos múltiples."
     },
     {
-        question: "En su gobierno se creó el Banco de la Nación:",
-        options: ["Augusto B. Leguía", "Juan Velasco Alvarado", "Juan José Bustamante y Rivera", "Manuel A. Odría", "Fernando Belaúnde Terry"],
-        correct: 1,
-        justification: "El Banco de la Nación fue creado por Decreto Ley 16000 en 1966, y su consolidación como entidad financiera del Estado ocurrió durante el gobierno revolucionario de Juan Velasco Alvarado (1968–1975)."
-    },
-    {
-        question: "¿Qué término utilizó Augusto B. Leguía para identificar al régimen que se mantuvo por once años en el poder?",
-        options: ["Patria Nueva", "Estado moderno", "Estado Nuevo", "Ninguna anterior", "Cambio Social"],
-        correct: 0,
-        justification: "Augusto B. Leguía denominó 'Patria Nueva' a su régimen autoritario que gobernó el Perú entre 1919 y 1930, impulsando modernización pero concentrando el poder y reprimiendo la oposición."
-    },
-    {
-        question: "¿En qué lugar se produjo el encuentro entre San Martín y Bolívar para consolidar la independencia del Perú?",
-        options: ["Ninguna de las anteriores", "Quito", "Caracas", "Tumbes", "Nueva Granada"],
-        correct: 0,
-        justification: "La famosa Entrevista de Guayaquil se realizó el 26 y 27 de julio de 1822 en Guayaquil (Ecuador), ciudad que no figura entre las opciones, por lo que la respuesta es 'Ninguna de las anteriores'."
-    },
-    {
-        question: "¿A qué se le denominó 'Interpretación auténtica' dentro de la historia del Perú?",
-        options: ["Ninguna de las anteriores", "A la interpretación que en 1996 hizo la mayoría fujimorista en el Congreso del Art. 112° de la Constitución de 1993", "A la interpretación del Tribunal Constitucional que posibilitó la segunda reelección de Alberto Fujimori", "A la doctrina jurídica que reinterpretó la Constitución de 1979", "A los acuerdos políticos del gobierno de Toledo sobre la reelección"],
-        correct: 1,
-        justification: "La 'interpretación auténtica' fue una ley aprobada por el Congreso fujimorista en 1996 que reinterpretó el Art. 112° para permitir la reelección de Fujimori, argumentando que su primer período no contaba bajo la nueva Constitución."
-    },
-    {
-        question: "'El Perú es desde este momento libre e independiente por la voluntad general de los pueblos...' La intención principal del texto es:",
-        options: ["Emular a don José de San Martín y su campaña libertadora", "Señalar la necesidad de la independencia del Perú", "Darle a la patria libertad y soberanía", "Declarar la independencia de un país", "Mostrar los errores históricos del país"],
-        correct: 3,
-        justification: "El fragmento corresponde al Acta de la Independencia del Perú, proclamada el 28 de julio de 1821 por José de San Martín. Su intención principal es declarar formalmente la independencia de la nación."
-    },
-    {
-        question: "La teoría que sostiene que fueron los antiguos peruanos quienes poblaron diversas islas polinésicas fue planteada por:",
-        options: ["Julio C. Tello", "Alex Hrdlicka", "Florentino Ameghino", "Méndez Correa", "Thor Heyerdahl"],
-        correct: 4,
-        justification: "Thor Heyerdahl demostró con la expedición del Kon-Tiki (1947) que era posible navegar desde Perú hasta la Polinesia en balsa, sosteniendo que pobladores sudamericanos habrían llegado a las islas del Pacífico."
-    },
-    {
-        question: "La cultura del Horizonte Medio que se caracterizó por su planificación urbana, red de caminos y relación con los motivos de Tiahuanaco fue:",
-        options: ["La cultura Vicus", "La cultura Chavín", "La cultura Moche", "La cultura Wari", "La cultura Inca"],
-        correct: 3,
-        justification: "La cultura Wari (Horizonte Medio, 600–1100 d.C.) destacó por la planificación de sus centros urbanos, su extensa red de caminos panandinos y el sincretismo con la iconografía de Tiahuanaco."
-    },
-    {
-        question: "La batalla de Tarapacá se llevó a cabo:",
-        options: ["El 30 de noviembre de 1879", "El 04 de noviembre de 1879", "El 24 de noviembre de 1879", "El 27 de noviembre de 1879", "El 25 de noviembre de 1879"],
-        correct: 3,
-        justification: "La Batalla de Tarapacá se libró el 27 de noviembre de 1879. Las fuerzas peruanas al mando del coronel Andrés Avelino Cáceres lograron una importante victoria táctica pese a estar en inferioridad numérica."
-    },
-    {
-        question: "El Imperio de los Incas estuvo dividido en 4 suyos, siendo los más extensos:",
-        options: ["El Antisuyo y el Contisuyo", "El Contisuyo y el Collasuyo", "El Antisuyo y el Collasuyo", "El Chinchaysuyo y el Antisuyo", "El Chinchaysuyo y el Collasuyo"],
-        correct: 4,
-        justification: "El Chinchaysuyo (norte, desde el Cusco hasta Colombia) y el Collasuyo (sur, hasta Chile y Argentina) fueron los dos suyos de mayor extensión territorial del Tahuantinsuyo."
-    },
-    {
-        question: "Las llamadas 'Nuevas Leyes' dadas por Carlos V a favor de los indígenas, que motivaron la rebelión de Gonzalo Pizarro, afectaban a:",
-        options: ["Los corregimientos", "Las intendencias", "Los mitimaes", "Las encomiendas", "Los cacicazgos"],
-        correct: 3,
-        justification: "Las Leyes Nuevas de 1542 buscaban abolir las encomiendas hereditarias y limitar el poder de los encomenderos. Esta amenaza a sus privilegios provocó la rebelión de Gonzalo Pizarro en el Perú."
+        pregunta: "El tubo digestivo histológicamente está formado por cuatro capas. ¿Cuál es el orden correcto de adentro hacia afuera?",
+        opciones: [
+            "Mucosa, serosa o adventicia, submucosa y muscular",
+            "Serosa o adventicia, muscular, submucosa y mucosa",
+            "Mucosa, submucosa, muscular y serosa o adventicia",
+            "Submucosa, mucosa, muscular, y serosa o adventicia",
+            "Submucosa, mucosa, serosa o adventicia y muscular"
+        ],
+        correcta: 2,
+        justificacion: "El orden universal de las capas del tubo digestivo de adentro hacia afuera es: Mucosa → Submucosa → Muscular → Serosa o Adventicia. Este patrón se repite desde el esófago hasta el recto."
     }
 ];
 
-let currentQuestion = 0;
-let score = 0;
-let answered = false;
-const userAnswers = [];
+let preguntaActual = 0;
+let puntaje = 0;
+let respondido = false;
+const respuestasUsuario = [];
 
-function initQuiz() { renderQuestion(); updateProgress(); updateButtons(); }
+function iniciar() { renderizarPregunta(); actualizarProgreso(); actualizarBotones(); }
 
-function renderQuestion() {
-    const q = questions[currentQuestion];
-    const container = document.getElementById('quizContainer');
-    const letters = ['A', 'B', 'C', 'D', 'E'];
-    container.innerHTML = `
-        <div class="question-card active">
-            <div class="question-number">Pregunta ${currentQuestion + 1} de ${questions.length}</div>
-            <div class="question-text">${q.question}</div>
-            <div class="options">
-                ${q.options.map((option, index) => `
-                    <div class="option" onclick="selectOption(${index})" data-index="${index}">
-                        <span class="option-letter">${letters[index]}</span>
-                        <span>${option}</span>
+function renderizarPregunta() {
+    const q = preguntas[preguntaActual];
+    const contenedor = document.getElementById('quizContainer');
+    const letras = ['A','B','C','D','E'];
+    contenedor.innerHTML = `
+        <div class="pregunta-card active">
+            <div class="num-pregunta">
+                <span>🔬</span> Pregunta ${preguntaActual + 1} de ${preguntas.length}
+            </div>
+            <div class="texto-pregunta">${q.pregunta.replace(/\n/g,'<br>')}</div>
+            <div class="opciones">
+                ${q.opciones.map((op, i) => `
+                    <div class="opcion" onclick="seleccionar(${i})" data-idx="${i}">
+                        <span class="letra-opcion">${letras[i]}</span>
+                        <span>${op}</span>
                     </div>
                 `).join('')}
             </div>
-            <div class="justification" id="justification">
-                <strong>💡 Justificación:</strong> ${q.justification}
+            <div class="justificacion" id="justificacion">
+                <strong>💡 Justificación:</strong> ${q.justificacion}
             </div>
         </div>
     `;
-    if (userAnswers[currentQuestion] !== undefined) showPreviousAnswer();
+    if (respuestasUsuario[preguntaActual] !== undefined) mostrarRespuestaPrevia();
 }
 
-function selectOption(index) {
-    if (answered) return;
-    const options = document.querySelectorAll('.option');
-    options.forEach(opt => opt.classList.remove('selected'));
-    options[index].classList.add('selected');
-    answered = true;
-    userAnswers[currentQuestion] = index;
-    const q = questions[currentQuestion];
+function seleccionar(idx) {
+    if (respondido) return;
+    const opciones = document.querySelectorAll('.opcion');
+    opciones.forEach(o => o.classList.remove('seleccionada'));
+    opciones[idx].classList.add('seleccionada');
+    respondido = true;
+    respuestasUsuario[preguntaActual] = idx;
+    const q = preguntas[preguntaActual];
     setTimeout(() => {
-        if (index === q.correct) { options[index].classList.add('correct'); score++; }
-        else { options[index].classList.add('incorrect'); options[q.correct].classList.add('correct'); }
-        options.forEach(opt => opt.classList.add('disabled'));
-        document.getElementById('justification').classList.add('show');
-        updateButtons();
-    }, 300);
+        if (idx === q.correcta) { opciones[idx].classList.add('correcta'); puntaje++; }
+        else { opciones[idx].classList.add('incorrecta'); opciones[q.correcta].classList.add('correcta'); }
+        opciones.forEach(o => o.classList.add('bloqueada'));
+        document.getElementById('justificacion').classList.add('visible');
+        actualizarBotones();
+    }, 280);
 }
 
-function showPreviousAnswer() {
-    const options = document.querySelectorAll('.option');
-    const userAnswer = userAnswers[currentQuestion];
-    const q = questions[currentQuestion];
-    options[userAnswer].classList.add('selected');
-    if (userAnswer === q.correct) options[userAnswer].classList.add('correct');
-    else { options[userAnswer].classList.add('incorrect'); options[q.correct].classList.add('correct'); }
-    options.forEach(opt => opt.classList.add('disabled'));
-    document.getElementById('justification').classList.add('show');
-    answered = true;
+function mostrarRespuestaPrevia() {
+    const opciones = document.querySelectorAll('.opcion');
+    const ua = respuestasUsuario[preguntaActual];
+    const q = preguntas[preguntaActual];
+    opciones[ua].classList.add('seleccionada');
+    if (ua === q.correcta) opciones[ua].classList.add('correcta');
+    else { opciones[ua].classList.add('incorrecta'); opciones[q.correcta].classList.add('correcta'); }
+    opciones.forEach(o => o.classList.add('bloqueada'));
+    document.getElementById('justificacion').classList.add('visible');
+    respondido = true;
 }
 
-function nextQuestion() {
-    if (!answered && userAnswers[currentQuestion] === undefined) {
-        alert('Por favor, selecciona una respuesta antes de continuar.');
+function siguiente() {
+    if (!respondido && respuestasUsuario[preguntaActual] === undefined) {
+        alert('Por favor selecciona una respuesta antes de continuar.');
         return;
     }
-    if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        answered = userAnswers[currentQuestion] !== undefined;
-        renderQuestion(); updateProgress(); updateButtons();
-        window.scrollTo(0, 0);
-    } else { showResults(); }
+    if (preguntaActual < preguntas.length - 1) {
+        preguntaActual++;
+        respondido = respuestasUsuario[preguntaActual] !== undefined;
+        renderizarPregunta(); actualizarProgreso(); actualizarBotones();
+        window.scrollTo(0,0);
+    } else { mostrarResultados(); }
 }
 
-function previousQuestion() {
-    if (currentQuestion > 0) {
-        currentQuestion--;
-        answered = true;
-        renderQuestion(); updateProgress(); updateButtons();
-        window.scrollTo(0, 0);
+function anterior() {
+    if (preguntaActual > 0) {
+        preguntaActual--;
+        respondido = true;
+        renderizarPregunta(); actualizarProgreso(); actualizarBotones();
+        window.scrollTo(0,0);
     }
 }
 
-function updateButtons() {
-    document.getElementById('prevBtn').disabled = currentQuestion === 0;
-    document.getElementById('nextBtn').textContent = (currentQuestion === questions.length - 1)
-        ? (answered ? 'Ver Resultados 🎯' : 'Finalizar 🎯')
-        : 'Siguiente →';
+function actualizarBotones() {
+    document.getElementById('btnAnterior').disabled = preguntaActual === 0;
+    document.getElementById('btnSiguiente').textContent =
+        (preguntaActual === preguntas.length - 1)
+            ? (respondido ? 'Ver Resultados 🎯' : 'Finalizar 🎯')
+            : 'Siguiente →';
 }
 
-function updateProgress() {
-    const pct = Math.round(((currentQuestion + 1) / questions.length) * 100);
-    document.getElementById('progressFill').style.width = pct + '%';
-    document.getElementById('progressText').textContent = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
-    document.getElementById('progressPct').textContent = pct + '%';
+function actualizarProgreso() {
+    const pct = Math.round(((preguntaActual + 1) / preguntas.length) * 100);
+    document.getElementById('barraRelleno').style.width = pct + '%';
+    document.getElementById('textoProgreso').textContent = `Pregunta ${preguntaActual + 1} de ${preguntas.length}`;
+    document.getElementById('pctProgreso').textContent = pct + '%';
 }
 
-function showResults() {
+function mostrarResultados() {
     document.getElementById('quizContainer').style.display = 'none';
-    document.getElementById('navButtons').style.display = 'none';
-    document.getElementById('results').classList.add('show');
-    const total = questions.length;
-    const nota = Math.round((score / total) * 20);
-    document.getElementById('finalScore').textContent = score;
-    document.getElementById('totalQuestions').textContent = total;
-    document.getElementById('finalNota').textContent = nota;
+    document.getElementById('navBotones').style.display = 'none';
+    document.getElementById('resultados').classList.add('visible');
+    const total = preguntas.length;
+    const nota = Math.round((puntaje / total) * 20);
+    document.getElementById('puntajeFinal').textContent = puntaje;
+    document.getElementById('totalPreguntas').textContent = total;
+    document.getElementById('notaFinal').textContent = nota;
     setTimeout(() => {
-        document.getElementById('gradeBarFill').style.width = ((nota / 20) * 100) + '%';
+        document.getElementById('barraGrade').style.width = ((nota / 20) * 100) + '%';
     }, 200);
-    const badge = document.getElementById('gradeBadge');
-    const msg = document.getElementById('resultMessage');
+    const insignia = document.getElementById('insigniaBadge');
+    const msg = document.getElementById('mensajeResultado');
     if (nota >= 17) {
-        badge.textContent = '🏆 Sobresaliente'; badge.className = 'grade-badge badge-excelente';
-        msg.textContent = '¡Excelente desempeño! Dominas con solidez los temas de Historia del Perú. ¡Así se llega a la universidad! 🌟';
+        insignia.textContent = '🏆 Sobresaliente'; insignia.className = 'insignia insignia-sobresaliente';
+        msg.textContent = '¡Dominas el curso de Anatomía con solidez! Estás muy bien preparado para el examen de admisión. 🌟';
     } else if (nota >= 14) {
-        badge.textContent = '👏 Aprobado — Bueno'; badge.className = 'grade-badge badge-bueno';
-        msg.textContent = '¡Muy bien! Tienes buenos conocimientos históricos. Refuerza los temas donde fallaste y estarás listo para el examen de admisión. 📚';
+        insignia.textContent = '👏 Aprobado — Bueno'; insignia.className = 'insignia insignia-bueno';
+        msg.textContent = '¡Muy bien! Tienes buenos conocimientos. Repasa los temas donde fallaste y estarás listo. 📚';
     } else if (nota >= 11) {
-        badge.textContent = '📖 Aprobado — Regular'; badge.className = 'grade-badge badge-regular';
-        msg.textContent = 'Vas por buen camino, pero aún hay temas que necesitan más repaso. ¡Tú puedes mejorar, sigue adelante! ✏️';
+        insignia.textContent = '📖 Aprobado — Regular'; insignia.className = 'insignia insignia-regular';
+        msg.textContent = 'Vas por buen camino, pero algunos temas necesitan refuerzo. ¡Sigue adelante, tú puedes! ✏️';
     } else {
-        badge.textContent = '💪 Desaprobado — Sigue intentando'; badge.className = 'grade-badge badge-desaprobado';
-        msg.textContent = 'No te rindas. Cada error es una lección. Repasa los temas con calma, vuelve a intentarlo y verás cómo mejoras. ¡Ánimo! 🔥';
+        insignia.textContent = '💪 Sigue intentando'; insignia.className = 'insignia insignia-desaprobado';
+        msg.textContent = 'No te rindas. Cada error es una lección. Repasa con calma y vuelve a intentarlo. ¡Ánimo! 🔥';
     }
 }
 
-function restartQuiz() {
-    currentQuestion = 0; score = 0; answered = false; userAnswers.length = 0;
-    document.getElementById('gradeBarFill').style.width = '0%';
+function reiniciar() {
+    preguntaActual = 0; puntaje = 0; respondido = false; respuestasUsuario.length = 0;
+    document.getElementById('barraGrade').style.width = '0%';
     document.getElementById('quizContainer').style.display = 'block';
-    document.getElementById('navButtons').style.display = 'flex';
-    document.getElementById('results').classList.remove('show');
-    initQuiz();
+    document.getElementById('navBotones').style.display = 'flex';
+    document.getElementById('resultados').classList.remove('visible');
+    iniciar();
 }
 
-initQuiz();
+iniciar();
 </script>
 </body>
 </html>
